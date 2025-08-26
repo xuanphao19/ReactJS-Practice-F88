@@ -19,6 +19,7 @@
   transition: translate 0.12s linear, background-color 0.12s linear,
     box-shadow 0.12s linear;
   cursor: pointer;
+  text-decoration: none;
 }
 .gotoback:hover {
   background-color: #a9a3a312;
