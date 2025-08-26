@@ -1,0 +1,30 @@
+.container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+.gotoback {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 128px;
+  height: 38px;
+  padding: 8px;
+  overflow: hidden;
+  font-size: 20px;
+  border-radius: 8px;
+  border: 1px solid #0000001a;
+  background-color: #0000000b;
+  transition: translate 0.12s linear, background-color 0.12s linear,
+    box-shadow 0.12s linear;
+  cursor: pointer;
+}
+.gotoback:hover {
+  background-color: #a9a3a312;
+  box-shadow: 4px 4px 16px rgba(123, 123, 123, 0.18);
+}
+.gotoback:active {
+  box-shadow: 2px 2px 4px rgba(123, 123, 123, 0.33);
+  translate: 0 4px;
+}
