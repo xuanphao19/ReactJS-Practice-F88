@@ -216,7 +216,7 @@ Nếu bạn có góp ý hoặc muốn cùng học hỏi, hãy để lại phản
 
 - ⏰ Bắt đầu: 07:00AM 26/08/2025.
 - 👨‍💻 Người tạo:
-  [Nguyễn Thanh Hòa](https://www.youtube.com/@xb_mathsonghanhcungcon2126)
+  [Nguyễn Thanh Hòa](https://github.com/xuanphao19?tab=repositories)
 
 ```
 ⭐️ Nếu bạn thấy repo hữu ích, hãy star để ủng hộ nhé!
