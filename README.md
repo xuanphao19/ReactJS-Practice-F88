@@ -13,7 +13,7 @@
 Chào mừng bạn đến với kho lưu trữ **ReactJS-Practice-F8**, nơi tôi ghi lại hành
 trình học tập và khám phá ReactJS. Dự án được tạo với mục tiêu:
 
-- [📝 Lưu trữ các ghi chú và kiến thức quan trọng về ReactJS.]()
+- [📝 Lưu trữ các ghi chú và kiến thức quan trọng về ReactJS.](https://github.com/chantastic/sites/blob/main/reactpatterns.com/hooks.md#usestate)
 - [⏳ Theo dõi tiến trình học tập từ cơ bản đến nâng cao.]()
 - [💻 Các bài tập Thực hành củng cố kỹ năng lập trình.]()
 - 📚 Xây dựng một tài liệu tham khảo hữu ích cho việc ôn tập sau này.
@@ -30,25 +30,34 @@ file sẽ được tổ chức rõ ràng để dễ dàng tra cứu.
 
 - Nội dung:
 
-  - Khởi tạo root và render component cơ bản.
-  - JSX cơ bản: cú pháp, biểu thức, attribute, inline style.
-  - Component function & props. State cơ bản với useState.
+  - [React CDN link](https://legacy.reactjs.org/docs/cdn-links.html)
+  - Khởi tạo root và
+    [render](https://vi.legacy.reactjs.org/docs/rendering-elements.html)
+    component cơ bản.
+  - [JSX cơ bản: cú pháp, biểu thức, attribute, inline style.](https://vi.legacy.reactjs.org/docs/introducing-jsx.html)
+  - [Component function & props](https://vi.legacy.reactjs.org/docs/components-and-props.html).
+    [State cơ bản với useState](https://vi.legacy.reactjs.org/docs/hooks-state.html).
 
-- 🎯 Mục tiêu: Hiểu cách React hoạt động ở mức gốc, không cần build tool.
+- 🎯 Mục tiêu:
+  [Hiểu cách React hoạt động ở mức gốc, không cần build tool](https://vi.legacy.reactjs.org/docs/add-react-to-a-website.html).
 
 ---
 
 ### Giai đoạn 2: Dự án với Vite (React chuẩn)
 
-- Công cụ: Vite, module import, JSX.
+- Công cụ: Vite, module import,
+  [JSX](https://vi.legacy.reactjs.org/docs/jsx-in-depth.html).
 
 - Nội dung:
 
 * Tổ chức project chuẩn (src/, public/).
 
-  - Component + props + state.
-  - Event handling (onClick, onChange…).
-  - List & key, conditional rendering.
+  - [Component + props](https://vi.legacy.reactjs.org/docs/state-and-lifecycle.html) +
+    state.
+  - [Event handling](https://vi.legacy.reactjs.org/docs/handling-events.html)
+    (onClick, onChange…).
+  - [List & key](https://vi.legacy.reactjs.org/docs/lists-and-keys.html),
+    [conditional rendering](https://vi.legacy.reactjs.org/docs/conditional-rendering.html).
 
 - 🎯 Mục tiêu: Làm quen môi trường React hiện đại, cơ bản nhưng có build tool hỗ
   trợ.
@@ -57,13 +66,19 @@ file sẽ được tổ chức rõ ràng để dễ dàng tra cứu.
 
 ### Giai đoạn 3: Hooks & Quản lý state nâng cao
 
-- Công cụ: React Hooks.
+- Công cụ:
+  [React Hooks.](https://github.com/chantastic/sites/blob/main/reactpatterns.com/hooks.md#usestate)
 
 - Nội dung:
 
-  - useState, useEffect (lifecycle).
-  - useRef, useMemo, useCallback.
-  - Custom hooks.
+  - [useState](https://vi.legacy.reactjs.org/docs/hooks-state.html),
+    [useEffect](https://vi.legacy.reactjs.org/docs/hooks-effect.html),
+    [(lifecycle)](https://vi.legacy.reactjs.org/docs/state-and-lifecycle.html).
+  - [useRef](https://react.dev/reference/react/useRef),
+    [useMemo](https://react.dev/reference/react/useMemo),
+    [useContext](https://react.dev/reference/react/useContext)
+    [useCallback](https://react.dev/reference/react/useCallback).
+  - [Custom hooks](https://vi.legacy.reactjs.org/docs/hooks-custom.html).
 
 - 🎯 Mục tiêu: Nắm vững cách React quản lý state, side-effect, tối ưu
   performance.
@@ -100,9 +115,9 @@ ReactJS-Practice-F88/
  │   ├─ assets
  │   ├─ exercises
  │   └─├─ exercise1.html
- │       ├─ exercise2.html
- │       ├─ exercise3.html
- │       └─ ...
+ │      ├─ exercise2.html
+ │      ├─ exercise3.html
+ │      └─ ...
  │
  ├─ src/                  # Mã nguồn React chuẩn (Vite + JSX)
  │   ├─ App.jsx
