@@ -15,7 +15,7 @@ trình học tập và khám phá ReactJS. Dự án được tạo với mục t
 
 - [📝 Lưu trữ các ghi chú và kiến thức quan trọng về ReactJS.](https://github.com/chantastic/sites/blob/main/reactpatterns.com/hooks.md#usestate)
 - [⏳ Theo dõi tiến trình học tập từ cơ bản đến nâng cao.]()
-- [💻 Các bài tập Thực hành củng cố kỹ năng lập trình.]()
+- [💻 Các bài tập Thực hành củng cố kỹ năng lập trình.](https://github.com/xuanphao19/ReactJS-Practice-F88/tree/main/public)
 - 📚 Xây dựng một tài liệu tham khảo hữu ích cho việc ôn tập sau này.
 
 Kho này sẽ bao gồm code mẫu, bài tập thực hành, và tài liệu liên quan đến các
