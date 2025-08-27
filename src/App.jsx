@@ -1,8 +1,9 @@
 // import { useState } from "react";
 import "./App.css";
+import ToggleTheme from "./toggleTheme";
 
 function App() {
-  // const [count, setCount] = useState(0);
+  // const [count, setCount] = useState(0); 
   const exercises = [
     {
       id: 1,
@@ -36,22 +37,32 @@ function App() {
     },
   ];
 
-  return (
-    <div className="container">
-      <div style={{ textAlign: "center", marginTop: "50px" }}>
-        <h1 className="slogan">Conquer ReactJS with F8 🚀</h1>
-        <p className="desc">
-          Dấu ấn khám phá và thực hành ReactJS cùng F8 -
-          <a href="https://fullstack.edu.vn/">{` fullstack.edu.vn`}</a> Học lập
-          trình để đi làm!
-        </p>
-      </div>
-
+  function ContentTheory() {
+    return (
       <div className="basic-theory">
         <h2>Lý thuyết cơ bản</h2>
         <div className="content-theory"></div>
       </div>
+    );
+  }
 
+  function Header() {
+    return (
+      <div style={{ textAlign: "center", marginTop: "50px" }}>
+        <h1 className="slogan">
+          Conquer ReactJS with F8 🚀. <ToggleTheme />
+        </h1>
+        <p className="desc">
+          Dấu ấn khám phá và thực hành ReactJS cùng F8 -
+          <a href="https://fullstack.edu.vn/">fullstack.edu.vn</a> Học lập trình
+          để đi làm!
+        </p>
+      </div>
+    );
+  }
+
+  function Navigation() {
+    return (
       <nav>
         <h2 className={`exercises`}>Bài tập thực hành:</h2>
         <ul>
@@ -73,6 +84,14 @@ function App() {
           </li>
         </ul>
       </nav>
+    );
+  }
+
+  return (
+    <div className="container">
+      <Header />
+      <ContentTheory />
+      <Navigation />
     </div>
   );
 }

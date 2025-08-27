@@ -2,19 +2,176 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link
-      rel="icon"
-      type="image/svg+xml"
-      href="/ReactJS-Practice-F88/vite.svg" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Bài tập 5: Comment System</title>
-    <link rel="stylesheet" href="/ReactJS-Practice-F88/src/index.css" />
+    <!-- React & ReactDOM từ CDN -->
+    <script
+      src="https://unpkg.com/react@18/umd/react.development.js"
+      crossorigin></script>
+    <script
+      src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"
+      crossorigin></script>
+    <!-- Babel để biên dịch JSX -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <link rel="stylesheet" href="/src/index.css" />
     <link rel="stylesheet" href="../../assets/css/main.css" />
   </head>
   <body>
-    <div class="container">
-      <a class="gotoback" href="/ReactJS-Practice-F88/index.html">Home</a>
-      <h1>Bài tập 5: Comment System</h1>
-    </div>
+    <div id="root"></div>
+
+    <script type="text/babel">
+      const { useState, useEffect } = React;
+
+      function Comments() {
+        const [data, setData] = useState([]);
+        const [loading, setLoading] = useState(true);
+        const [comment, setComment] = useState({
+          name: "",
+          email: "",
+          body: "",
+          avatarUrl: "",
+        });
+
+        const Header = () => {
+          const ToggleTheme = () => {
+            const [theme, setTheme] = useState(() => {
+              return localStorage.getItem("theme");
+            });
+            useEffect(() => {
+              document.documentElement.classList.toggle(
+                "dark",
+                theme === "dark",
+              );
+              localStorage.setItem("theme", theme);
+            }, [theme]);
+
+            const toggle = () => {
+              setTheme(theme === "dark" ? "" : "dark");
+            };
+            return (
+              <button className="toggle-theme" onClick={toggle}>
+                {theme === "dark" ? "🌙" : "☀️"}
+              </button>
+            );
+          };
+
+          return (
+            <header id="header">
+              <div className="header">
+                <h1 className="slogan">Conquer ReactJS with F8 🚀 </h1>
+                <a className="gotoback" href="/index.html">
+                  Home
+                </a>
+                <ToggleTheme />
+              </div>
+
+              <p className="desc">
+                Dấu ấn khám phá và thực hành ReactJS cùng F8
+                <a href="https://fullstack.edu.vn/">{` - fullstack.edu.vn - `}</a>
+                Học lập trình để đi làm!
+              </p>
+            </header>
+          );
+        };
+
+        useEffect(() => {
+          fetch("https://jsonplaceholder.typicode.com/comments?postId=1")
+            .then((res) => res.json())
+            .then((data) => setData(data))
+            .finally(() => setLoading(false));
+        }, []);
+
+        const FakeTime = () => {
+          const maxOffset = 7 * 24 * 60 * 60 * 1000;
+          const minOffset = 60 * 1000;
+          const randomOffset = Math.floor(
+            Math.random() * (maxOffset - minOffset) + minOffset,
+          );
+          const pastDate = new Date(Date.now() - randomOffset);
+          const diffMs = Date.now() - pastDate.getTime();
+
+          const diffMinutes = Math.floor(diffMs / (1000 * 60));
+          const diffHours = Math.floor(diffMinutes / 60);
+          const diffDays = Math.floor(diffHours / 24);
+
+          if (diffMinutes < 60) {
+            return ` ${diffMinutes} phút trước`;
+          } else if (diffHours < 24) {
+            return ` ${diffHours} giờ trước`;
+          } else {
+            return ` ${diffDays} ngày trước`;
+          }
+        };
+
+        const handleInputChange = (e) => {
+          const { id, value } = e.target;
+          setComment((prev) => ({ ...prev, [id]: value }));
+        };
+
+        const handleSubmit = (e) => {
+          e.preventDefault();
+          setData([{ ...comment }, ...data]);
+          setComment({ name: "", email: "", body: "" });
+        };
+
+        if (loading) return <p>Đang tải dữ liệu...</p>;
+
+        return (
+          <div className="container">
+            <Header />
+            <h2>Bài tập 1.5: Comment System</h2>
+            <form className="form-data" onSubmit={handleSubmit}>
+              <input
+                id="name"
+                placeholder="Name Enter"
+                value={comment.name}
+                onChange={handleInputChange}
+              />
+              <input
+                id="email"
+                placeholder="Email Enter"
+                value={comment.email}
+                onChange={handleInputChange}
+              />
+              <textarea
+                rows="5"
+                id="body"
+                placeholder="Comment  Enter"
+                value={comment.body}
+                onChange={handleInputChange}
+              />
+              <button
+                className="btn-submit"
+                disabled={!comment.name || !comment.email || !comment.body}>
+                Comment
+              </button>
+            </form>
+
+            <div className="user-comment">
+              {data.map((c, i) => (
+                <div className="user" key={i}>
+                  <img
+                    className="user-avatar"
+                    src={`https://ui-avatars.com/api/?name=${c.name}&background=random`}
+                    alt="avatar"
+                  />
+                  <div className="user-info">
+                    <div className="user-name">
+                      <strong>{c.name}</strong> - {c.email}
+                      <FakeTime />
+                    </div>
+                    <p>{c.body}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        );
+      }
+      const root = ReactDOM.createRoot(document.getElementById("root"));
+      root.render(<Comments />);
+    </script>
   </body>
 </html>
