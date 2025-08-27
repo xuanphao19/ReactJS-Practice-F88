@@ -1,3 +1,9 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 .container {
   max-width: 1280px;
   margin: 0 auto;
@@ -20,6 +26,7 @@
     box-shadow 0.12s linear;
   cursor: pointer;
   text-decoration: none;
+  box-sizing: border-box;
 }
 .gotoback:hover {
   background-color: #a9a3a312;
