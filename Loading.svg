@@ -1,0 +1,119 @@
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  width="64"
+  height="64"
+  viewBox="0 0 44 44"
+  role="img"
+  aria-label="Loading…">
+  <title>Loading…</title>
+  <g
+    fill="none"
+    fillRule="evenodd"
+    stroke="currentColor"
+    strokeWidth="4">
+    <circle cx="22" cy="22" r="20" strokeOpacity=".2" />
+    <path d="M42 22c0-11.046-8.954-20-20-20">
+      <animateTransform
+        attributeName="transform"
+        type="rotate"
+        from="0 22 22"
+        to="360 22 22"
+        dur="0.9s"
+        repeatCount="indefinite"
+      />
+    </path>
+  </g>
+</svg>
+<svg
+  width="50"
+  height="50"
+  viewBox="0 0 50 50"
+  xmlns="http://www.w3.org/2000/svg">
+  <circle
+    cx="25"
+    cy="25"
+    r="20"
+    stroke="#000"
+    strokeWidth="4"
+    fill="none"
+    strokeDasharray="31.4"
+    strokeDashoffset="0">
+    <animateTransform
+      attributeName="transform"
+      type="rotate"
+      from="0 25 25"
+      to="360 25 25"
+      dur="1s"
+      repeatCount="indefinite"
+    />
+  </circle>
+</svg>
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  width="64"
+  height="64"
+  viewBox="0 0 44 44"
+  role="img"
+  aria-label="Loading…"
+  >
+  <title>Loading…</title>
+  <g fill="none" fill-rule="evenodd" stroke="currentColor" stroke-width="4">
+    <circle cx="22" cy="22" r="20" stroke-opacity=".2" />
+    <path d="M42 22c0-11.046-8.954-20-20-20" stroke-linecap="round">
+      <animateTransform
+        attributeName="transform"
+        type="rotate"
+        from="0 22 22"
+        to="360 22 22"
+        dur="0.9s"
+        repeatCount="indefinite"
+      />
+    </path>
+  </g>
+  <text
+    x="22"
+    y="22"
+    text-anchor="middle"
+    dominant-baseline="middle"
+    font-size="6"
+    fill="#333"
+  >
+    Loading…
+  </text>
+</svg>
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  width="64"
+  height="64"
+  viewBox="0 0 44 44"
+  role="img"
+  aria-label="Loading…"
+>
+  <title>Loading…</title>
+  <g fill="none" fill-rule="evenodd" stroke="currentColor" stroke-width="4">
+    <!-- vòng mờ -->
+    <circle cx="22" cy="22" r="20" stroke-opacity=".2" />
+    <!-- cung quay -->
+    <path d="M42 22c0-11.046-8.954-20-20-20" stroke-linecap="round">
+      <animateTransform
+        attributeName="transform"
+        type="rotate"
+        from="0 22 22"
+        to="360 22 22"
+        dur="0.9s"
+        repeatCount="indefinite"
+      />
+    </path>
+  </g>
+  <!-- text nằm giữa -->
+  <text
+    x="22"
+    y="22"
+    text-anchor="middle"
+    dominant-baseline="middle"
+    font-size="6"
+    fill="#333"
+  >
+    Loading…
+  </text>
+</svg>

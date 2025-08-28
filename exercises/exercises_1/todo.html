@@ -4,21 +4,181 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Bài tập 2: Counter App</title>
-    <!-- Note: when deploying, replace "development.js" with "production.min.js". -->
+    <title>Bài tập 1.2: Todo List App</title>
     <script
       src="https://unpkg.com/react@18/umd/react.development.js"
       crossorigin></script>
     <script
       src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"
       crossorigin></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 
     <link rel="stylesheet" href="../../assets/css/main.css" />
   </head>
   <body>
-    <div class="container">
-      <a class="gotoback" href="/index.html">Home</a>
-      <h1>Bài tập 2: Counter App</h1>
-    </div>
+    <div id="root"></div>
+
+    <script type="text/babel">
+      const { useState, useEffect } = React;
+      let uniqId = 0;
+
+      const Header = () => {
+        const ToggleTheme = () => {
+          const [theme, setTheme] = useState(() => {
+            return localStorage.getItem("theme");
+          });
+          useEffect(() => {
+            document.documentElement.classList.toggle("dark", theme === "dark");
+            localStorage.setItem("theme", theme);
+          }, [theme]);
+
+          const toggle = () => {
+            setTheme(theme === "dark" ? "" : "dark");
+          };
+          return (
+            <button className="toggle-theme" onClick={toggle}>
+              {theme === "dark" ? "🌙" : "☀️"}
+            </button>
+          );
+        };
+
+        return (
+          <header id="header">
+            <div className="header">
+              <h1 className="slogan">Conquer ReactJS with F8 🚀 </h1>
+              <a className="gotoback" href="/ReactJS-Practice-F88/index.html">
+                Home
+              </a>
+              <ToggleTheme />
+            </div>
+
+            <p className="desc">
+              Dấu ấn khám phá và thực hành ReactJS cùng F8
+              <a href="https://fullstack.edu.vn/">{` - fullstack.edu.vn - `}</a>
+              Học lập trình để đi làm!
+            </p>
+          </header>
+        );
+      };
+
+      function TodoApp() {
+        const [inputValue, setInputValue] = useState("");
+        const [todos, setTodos] = useState([]);
+        const [done, setDone] = useState({ finished: 0, unfinished: 0 });
+
+        useEffect(() => {
+          const fobs = JSON.parse(localStorage.getItem("todos")) || [];
+          if (fobs.length) {
+            uniqId = Math.max(...fobs.map((item) => item.id));
+          }
+          setTodos(fobs);
+        }, []);
+
+        useEffect(() => {
+          localStorage.setItem("todos", JSON.stringify(todos));
+          handleFinished();
+        }, [todos]);
+
+        const handleInputChange = (e) => {
+          if (!e.target.value) return;
+          setInputValue(e.target.value); // Lấy giá trị từ input
+        };
+
+        const handleSubmit = (e) => {
+          e.preventDefault();
+          document.querySelector("#todo-input").focus();
+          if (!inputValue) return;
+          if (inputValue.trim()) {
+            setTodos([
+              ...todos,
+              { id: ++uniqId, text: inputValue, completed: false },
+            ]);
+            setInputValue(""); // Reset input sau khi thêm
+          }
+        };
+
+        const handleChecked = (e) => {
+          const tasks = todos.map((item) => {
+            if (item.id === Number(e.target.closest(".task-detail").id)) {
+              item.completed = !item.completed;
+            }
+            return item;
+          });
+          handleFinished();
+          setTodos([...tasks]);
+        };
+
+        const handleDelete = (e) => {
+          const eleDelete = e.target.closest(".task-detail");
+          const tasks = todos.filter((item) => {
+            return item.id !== Number(eleDelete.id);
+          });
+          setTodos(tasks);
+        };
+
+        const handleFinished = () => {
+          const jobs = todos.filter((item) => {
+            return item.completed === true;
+          });
+          setDone({
+            finished: jobs.length,
+            unfinished: todos.length - jobs.length,
+          });
+        };
+
+        return (
+          <div className="container">
+            <Header />
+            <h2 className="exercise_1">Bài tập 1.2: Todo List App</h2>
+            <div className="wrapper todo-list">
+              <ul className="list-task">
+                {todos.length > 0 ? (
+                  todos.map((task) => {
+                    return (
+                      <li key={task.id} id={task.id} className="task-detail">
+                        <input
+                          className="task-ctrl"
+                          type="checkbox"
+                          name="checkbox"
+                          checked={task.completed}
+                          onChange={handleChecked}
+                        />
+                        <p className="task-name">{task.text}</p>
+                        <button onClick={handleDelete} className="delete-task">
+                          Xóa
+                        </button>
+                      </li>
+                    );
+                  })
+                ) : (
+                  <li className="vain">
+                    Chưa có công việc. Thêm công việc đầu tiên
+                  </li>
+                )}
+              </ul>
+
+              <div className="statistical">
+                <span className="total-work">Tổng: {todos.length}</span>
+                <span className="completed-work">Đã làm: {done.finished}</span>
+                <span className="incomplete-work">
+                  Chưa làm: {done.unfinished}
+                </span>
+              </div>
+              <form onSubmit={handleSubmit}>
+                <input
+                  id="todo-input"
+                  value={inputValue}
+                  onChange={handleInputChange}
+                  placeholder="Nhập công việc mới..."
+                />
+                <button type="submit">Thêm</button>
+              </form>
+            </div>
+          </div>
+        );
+      }
+      const root = ReactDOM.createRoot(document.getElementById("root"));
+      root.render(<TodoApp />);
+    </script>
   </body>
 </html>
