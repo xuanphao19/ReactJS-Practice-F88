@@ -24,12 +24,10 @@
       const { useState, useEffect } = React;
 
       const WEATHER_ID = "fdfd8bff8ab5b53fdd7ca82ef272712e";
-
       const API_ENDPOINT = {
-        TIME_ZONE: "http://worldtimeapi.org/api/ip",
+        TIME_ZONE: "https://worldtimeapi.org/api/ip",
         WEATHER:
           "https://api.openweathermap.org/data/2.5/weather?units=metric&",
-        COUNTRY: "http://ip-api.com/json/?fields=country,countryCode,city",
       };
 
       const Header = () => {
@@ -73,18 +71,12 @@
 
       function Weathers() {
         const [weather, setWeather] = useState([]);
-        const [country, setCountry] = useState({});
         const [currentCity, setCurrentCity] = useState("");
         const [newCity, setNewCity] = useState("");
         const [error, setError] = useState("");
 
         useEffect(() => {
-          const blogs = fetch(`${API_ENDPOINT.COUNTRY}`)
-            .then((res) => res.json())
-            .then((data) => {
-              setCountry(data);
-              setCurrentCity(data.city);
-            });
+          getWeatherLogCity();
         }, []);
 
         useEffect(() => {
@@ -92,16 +84,6 @@
             getWeatherLogCity(currentCity);
           }
         }, [currentCity]);
-
-        // function normalizeCityName(str) {
-        //   return str
-        //     .normalize("NFD") // Phân tách ký tự thành chữ cái và dấu
-        //     .replace(/[\u0300-\u036f]/g, "") // Xóa các dấu
-        //     .replace(/đ/g, "d") // Thay "đ" thành "d"
-        //     .replace(/Đ/g, "D") // Thay "Đ" thành "D"
-        //     .toLowerCase() // Chuyển thành chữ thường
-        //     .replace(/\s+/g, " "); // Chuẩn hóa khoảng trắng
-        // }
 
         function normalizeCityName(str) {
           return str
@@ -119,7 +101,6 @@
               `${API_ENDPOINT.WEATHER}appid=${WEATHER_ID}&q=${city}&lang=vi`,
             );
             const data = await response.json();
-            console.log("data.cod", data.cod);
             if (data.cod !== 200) {
               setError("Thành phố không có trong kho dữ liệu!");
               throw new Error(data.message || "Không tìm thấy thành phố");
