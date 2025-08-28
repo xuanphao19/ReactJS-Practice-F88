@@ -12,13 +12,76 @@
     <script
       src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"
       crossorigin></script>
+    <!-- Babel để biên dịch JSX -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 
     <link rel="stylesheet" href="../../assets/css/main.css" />
   </head>
   <body>
-    <div class="container">
-      <a class="gotoback" href="/index.html">Home</a>
-      <h1>Bài tập 6: Weather App</h1>
-    </div>
+    <div id="root"></div>
+
+    <script type="text/babel">
+      const { useState, useEffect } = React;
+
+      const Header = () => {
+        const ToggleTheme = () => {
+          const [theme, setTheme] = useState(() => {
+            return localStorage.getItem("theme");
+          });
+          useEffect(() => {
+            document.documentElement.classList.toggle("dark", theme === "dark");
+            localStorage.setItem("theme", theme);
+          }, [theme]);
+
+          const toggle = () => {
+            setTheme(theme === "dark" ? "" : "dark");
+          };
+          return (
+            <button className="toggle-theme" onClick={toggle}>
+              {theme === "dark" ? "🌙" : "☀️"}
+            </button>
+          );
+        };
+
+        return (
+          <header id="header">
+            <div className="header">
+              <h1 className="slogan">Conquer ReactJS with F8 🚀 </h1>
+              <a className="gotoback" href="/ReactJS-Practice-F88/index.html">
+                Home
+              </a>
+              <ToggleTheme />
+            </div>
+
+            <p className="desc">
+              Dấu ấn khám phá và thực hành ReactJS cùng F8
+              <a href="https://fullstack.edu.vn/">{` - fullstack.edu.vn - `}</a>
+              Học lập trình để đi làm!
+            </p>
+          </header>
+        );
+      };
+
+      function Weather() {
+        const [posts, setPosts] = useState([]);
+        const [bloger, setBloger] = useState([]);
+        const [blogDetails, setBlogDetails] = useState([]);
+
+        useEffect(() => {}, []);
+
+        return (
+          <div className="container">
+            <Header />
+            <div className="exercise-content">
+              <h2>Bài tập 6: Weather App</h2>
+              <div className="answer-content"></div>
+            </div>
+          </div>
+        );
+      }
+
+      const root = ReactDOM.createRoot(document.getElementById("root"));
+      root.render(<Weather />);
+    </script>
   </body>
 </html>

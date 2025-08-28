@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Bài tập 3: Todo App</title>
+    <title>Bài tập 3: Profile Card</title>
     <!-- Note: when deploying, replace "development.js" with "production.min.js". -->
     <script
       src="https://unpkg.com/react@18/umd/react.development.js"
@@ -12,13 +12,159 @@
     <script
       src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"
       crossorigin></script>
-
+    <!-- Babel để biên dịch JSX -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
     <link rel="stylesheet" href="../../assets/css/main.css" />
   </head>
+
   <body>
-    <div class="container">
-      <a class="gotoback" href="/index.html">Home</a>
-      <h1>Bài tập 3: Todo App</h1>
-    </div>
+    <div id="root"></div>
+
+    <script type="text/babel">
+      const { useState, useEffect } = React;
+
+      const Header = () => {
+        const ToggleTheme = () => {
+          const [theme, setTheme] = useState(() => {
+            return localStorage.getItem("theme");
+          });
+          useEffect(() => {
+            document.documentElement.classList.toggle("dark", theme === "dark");
+            localStorage.setItem("theme", theme);
+          }, [theme]);
+
+          const toggle = () => {
+            setTheme(theme === "dark" ? "" : "dark");
+          };
+          return (
+            <button className="toggle-theme" onClick={toggle}>
+              {theme === "dark" ? "🌙" : "☀️"}
+            </button>
+          );
+        };
+
+        return (
+          <header id="header">
+            <div className="header">
+              <h1 className="slogan">Conquer ReactJS with F8 🚀 </h1>
+              <a className="gotoback" href="/ReactJS-Practice-F88/index.html">
+                Home
+              </a>
+              <ToggleTheme />
+            </div>
+
+            <p className="desc">
+              Dấu ấn khám phá và thực hành ReactJS cùng F8
+              <a href="https://fullstack.edu.vn/">{` - fullstack.edu.vn - `}</a>
+              Học lập trình để đi làm!
+            </p>
+          </header>
+        );
+      };
+
+      function Profile() {
+        const [artist, setArtist] = useState({});
+        useEffect(() => {
+          fetch("https://randomuser.me/api/")
+            .then((res) => res.json())
+            .then((data) => {
+              const user = data.results[0];
+              setArtist({
+                name: user.name,
+                username: user.login.username,
+                email: user.email,
+                phone: user.phone,
+                website: "https://fullstack.edu.vn/",
+                address: `${user.location.street.name}, ${user.location.city}`,
+                avatar_url: user.picture.large,
+              });
+            });
+        }, []);
+
+        if (!artist.avatar_url)
+          return (
+            <div className="loading">
+              <svg
+                width="250"
+                height="250"
+                viewBox="0 0 50 50"
+                xmlns="http://www.w3.org/2000/svg">
+                <circle
+                  cx="25"
+                  cy="25"
+                  r="20"
+                  stroke="#646cff"
+                  strokeLinecap="round"
+                  strokeWidth="4"
+                  fill="none"
+                  strokeDasharray="31.4"
+                  strokeDashoffset="0">
+                  <animateTransform
+                    attributeName="transform"
+                    type="rotate"
+                    from="0 25 25"
+                    to="360 25 25"
+                    dur="1s"
+                    repeatCount="indefinite"
+                  />
+                </circle>
+                <text
+                  x="25"
+                  y="25"
+                  textAnchor="middle"
+                  dominantBaseline="middle"
+                  fontSize="6"
+                  fontWeight="700"
+                  fill="#646cff">
+                  Loading…
+                </text>
+              </svg>
+            </div>
+          );
+
+        return (
+          <div className="container">
+            <Header />
+            <div className="exercise-content">
+              <h2>Bài tập 1.3: Profile Card</h2>
+              <div className="answer-content">
+                <div className="profile-card">
+                  <img src={artist.avatar_url} alt="Profile Picture" />
+                  <h3>
+                    <strong>{artist.name.title}: </strong>
+                    {artist.name.last} {artist.name.first}
+                  </h3>
+                  <div className="username">{artist.username}</div>
+                  <div className="info">
+                    <p>
+                      <strong>Email:</strong>
+                      <a href="mailto:contact@fullstack.edu.vn">
+                        {artist.email}
+                      </a>
+                    </p>
+                    <p>
+                      <strong>Phone:</strong> {artist.phone}
+                    </p>
+                    <p>
+                      <strong>Website:</strong>
+                      <a href={artist.website} target="_blank">
+                        {artist.website}
+                      </a>
+                    </p>
+                    <p>
+                      <strong>Address:</strong>
+                      {artist.address}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        );
+      }
+
+      const root = ReactDOM.createRoot(document.getElementById("root"));
+      root.render(<Profile />);
+    </script>
   </body>
 </html>
