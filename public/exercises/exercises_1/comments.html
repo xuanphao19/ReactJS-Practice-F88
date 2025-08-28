@@ -158,55 +158,62 @@
         return (
           <div className="container">
             <Header />
-            <h2>Bài tập 1.5: Comment System</h2>
-            <form className="form-data" onSubmit={handleSubmit}>
-              <input
-                id="name"
-                placeholder="Name Enter"
-                value={comment.name}
-                onChange={handleInputChange}
-              />
-              <input
-                id="email"
-                placeholder="Email Enter"
-                value={comment.email}
-                onChange={handleInputChange}
-              />
-              <textarea
-                rows="5"
-                id="body"
-                placeholder="Comment  Enter"
-                value={comment.body}
-                onChange={handleInputChange}
-              />
-              <button
-                className="btn-submit"
-                disabled={!comment.name || !comment.email || !comment.body}>
-                Comment
-              </button>
-            </form>
+            <div className="exercise-content">
+              <h2>Bài tập 1.5: Comment System</h2>
+              <a
+                href="https://github.com/xuanphao19/ReactJS-Practice-F88/blob/main/public/exercises/exercises_1/comments.html"
+                className="repositories">
+                Repositories GitHub
+              </a>
+              <form className="form-data" onSubmit={handleSubmit}>
+                <input
+                  id="name"
+                  placeholder="Name Enter"
+                  value={comment.name}
+                  onChange={handleInputChange}
+                />
+                <input
+                  id="email"
+                  placeholder="Email Enter"
+                  value={comment.email}
+                  onChange={handleInputChange}
+                />
+                <textarea
+                  rows="5"
+                  id="body"
+                  placeholder="Comment  Enter"
+                  value={comment.body}
+                  onChange={handleInputChange}
+                />
+                <button
+                  className="btn-submit"
+                  disabled={!comment.name || !comment.email || !comment.body}>
+                  Comment
+                </button>
+              </form>
 
-            <div className="user-comment">
-              {loading ? (
-                <Loading />
-              ) : (
-                data.map((c, i) => (
-                  <div className="user" key={i}>
-                    <img
-                      className="user-avatar"
-                      src={`https://ui-avatars.com/api/?name=${c.name}&background=random`}
-                      alt="avatar"
-                    />
-                    <div className="user-info">
-                      <div className="user-name">
-                        <strong>{c.name}</strong> - {c.email}
-                        <FakeTime />
+              <div className="user-comment">
+                {loading ? (
+                  <Loading />
+                ) : (
+                  data.map((c, i) => (
+                    <div className="user" key={i}>
+                      <img
+                        className="user-avatar"
+                        src={`https://ui-avatars.com/api/?name=${c.name}&background=random`}
+                        alt="avatar"
+                      />
+                      <div className="user-info">
+                        <div className="user-name">
+                          <strong>{c.name}</strong> - {c.email}
+                          <FakeTime />
+                        </div>
+                        <p>{c.body}</p>
                       </div>
-                      <p>{c.body}</p>
                     </div>
-                  </div>
-                ))
-              )}
+                  ))
+                )}
+              </div>
             </div>
           </div>
         );

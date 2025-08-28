@@ -3,7 +3,7 @@ import "./App.css";
 import ToggleTheme from "./toggleTheme";
 
 function App() {
-  // const [count, setCount] = useState(0); 
+  // const [count, setCount] = useState(0);
   const exercises = [
     {
       id: 1,
@@ -90,8 +90,15 @@ function App() {
   return (
     <div className="container">
       <Header />
-      <ContentTheory />
-      <Navigation />
+      <div className="exercise-content">
+        <a
+          href="https://github.com/xuanphao19/ReactJS-Practice-F88"
+          className="repositories">
+          Repositories GitHub
+        </a>
+        <ContentTheory />
+        <Navigation />
+      </div>
     </div>
   );
 }

@@ -831,3 +831,7 @@ button.close-bog-detail-btn {
   cursor: pointer;
   padding: 10px;
 }
+.repositories {
+  margin-top: 20px;
+  font-size: 20px;
+}

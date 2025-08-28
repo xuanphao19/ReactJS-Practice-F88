@@ -58,3 +58,7 @@ nav li a {
   transition: background-color 0.2s linear;
   cursor: pointer;
 }
+a.repositories {
+  display: flex;
+  margin-top: 20px;
+}

@@ -129,50 +129,61 @@
         return (
           <div className="container">
             <Header />
-            <h2 className="exercise_1">Bài tập 1.2: Todo List App</h2>
-            <div className="wrapper todo-list">
-              <ul className="list-task">
-                {todos.length > 0 ? (
-                  todos.map((task) => {
-                    return (
-                      <li key={task.id} id={task.id} className="task-detail">
-                        <input
-                          className="task-ctrl"
-                          type="checkbox"
-                          name="checkbox"
-                          checked={task.completed}
-                          onChange={handleChecked}
-                        />
-                        <p className="task-name">{task.text}</p>
-                        <button onClick={handleDelete} className="delete-task">
-                          Xóa
-                        </button>
-                      </li>
-                    );
-                  })
-                ) : (
-                  <li className="vain">
-                    Chưa có công việc. Thêm công việc đầu tiên
-                  </li>
-                )}
-              </ul>
+            <div className="exercise-content">
+              <h2 className="exercise_1">Bài tập 1.2: Todo List App</h2>
+              <a
+                href="https://github.com/xuanphao19/ReactJS-Practice-F88/blob/main/public/exercises/exercises_1/todo.html"
+                className="repositories">
+                Repositories GitHub
+              </a>
+              <div className="wrapper todo-list">
+                <ul className="list-task">
+                  {todos.length > 0 ? (
+                    todos.map((task) => {
+                      return (
+                        <li key={task.id} id={task.id} className="task-detail">
+                          <input
+                            className="task-ctrl"
+                            type="checkbox"
+                            name="checkbox"
+                            checked={task.completed}
+                            onChange={handleChecked}
+                          />
+                          <p className="task-name">{task.text}</p>
+                          <button
+                            onClick={handleDelete}
+                            className="delete-task">
+                            Xóa
+                          </button>
+                        </li>
+                      );
+                    })
+                  ) : (
+                    <li className="vain">
+                      Chưa có công việc. Thêm công việc đầu tiên
+                    </li>
+                  )}
+                </ul>
 
-              <div className="statistical">
-                <span className="total-work">Tổng: {todos.length}</span>
-                <span className="completed-work">Đã làm: {done.finished}</span>
-                <span className="incomplete-work">
-                  Chưa làm: {done.unfinished}
-                </span>
+                <div className="statistical">
+                  <span className="total-work">Tổng: {todos.length}</span>
+                  <span className="completed-work">
+                    Đã làm: {done.finished}
+                  </span>
+                  <span className="incomplete-work">
+                    Chưa làm: {done.unfinished}
+                  </span>
+                </div>
+                <form onSubmit={handleSubmit}>
+                  <input
+                    id="todo-input"
+                    value={inputValue}
+                    onChange={handleInputChange}
+                    placeholder="Nhập công việc mới..."
+                  />
+                  <button type="submit">Thêm</button>
+                </form>
               </div>
-              <form onSubmit={handleSubmit}>
-                <input
-                  id="todo-input"
-                  value={inputValue}
-                  onChange={handleInputChange}
-                  placeholder="Nhập công việc mới..."
-                />
-                <button type="submit">Thêm</button>
-              </form>
             </div>
           </div>
         );
