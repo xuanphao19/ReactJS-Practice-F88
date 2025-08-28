@@ -23,6 +23,15 @@
     <script type="text/babel">
       const { useState, useEffect } = React;
 
+      const WEATHER_ID = "fdfd8bff8ab5b53fdd7ca82ef272712e";
+
+      const API_ENDPOINT = {
+        TIME_ZONE: "http://worldtimeapi.org/api/ip",
+        WEATHER:
+          "https://api.openweathermap.org/data/2.5/weather?units=metric&",
+        COUNTRY: "http://ip-api.com/json/?fields=country,countryCode,city",
+      };
+
       const Header = () => {
         const ToggleTheme = () => {
           const [theme, setTheme] = useState(() => {
@@ -62,26 +71,293 @@
         );
       };
 
-      function Weather() {
-        const [posts, setPosts] = useState([]);
-        const [bloger, setBloger] = useState([]);
-        const [blogDetails, setBlogDetails] = useState([]);
+      function Weathers() {
+        const [weather, setWeather] = useState([]);
+        const [country, setCountry] = useState({});
+        const [currentCity, setCurrentCity] = useState("");
+        const [newCity, setNewCity] = useState("");
+        const [error, setError] = useState("");
 
-        useEffect(() => {}, []);
+        useEffect(() => {
+          const blogs = fetch(`${API_ENDPOINT.COUNTRY}`)
+            .then((res) => res.json())
+            .then((data) => {
+              setCountry(data);
+              setCurrentCity(data.city);
+            });
+        }, []);
+
+        useEffect(() => {
+          if (currentCity) {
+            getWeatherLogCity(currentCity);
+          }
+        }, [currentCity]);
+
+        // function normalizeCityName(str) {
+        //   return str
+        //     .normalize("NFD") // Phân tách ký tự thành chữ cái và dấu
+        //     .replace(/[\u0300-\u036f]/g, "") // Xóa các dấu
+        //     .replace(/đ/g, "d") // Thay "đ" thành "d"
+        //     .replace(/Đ/g, "D") // Thay "Đ" thành "D"
+        //     .toLowerCase() // Chuyển thành chữ thường
+        //     .replace(/\s+/g, " "); // Chuẩn hóa khoảng trắng
+        // }
+
+        function normalizeCityName(str) {
+          return str
+            .trim()
+            .toLowerCase()
+            .replace(/(^|\s)\w/g, (letter) => letter.toUpperCase());
+        }
+
+        const getWeatherLogCity = async (desiredCity = null) => {
+          const city = desiredCity
+            ? normalizeCityName(desiredCity.trim())
+            : "Hanoi";
+          try {
+            const response = await fetch(
+              `${API_ENDPOINT.WEATHER}appid=${WEATHER_ID}&q=${city}&lang=vi`,
+            );
+            const data = await response.json();
+            console.log("data.cod", data.cod);
+            if (data.cod !== 200) {
+              setError("Thành phố không có trong kho dữ liệu!");
+              throw new Error(data.message || "Không tìm thấy thành phố");
+            }
+            if (!data.sys || !data.weather || !data.main) {
+              setError("Dữ liệu thời tiết không đầy đủ");
+              throw new Error("Dữ liệu thời tiết không đầy đủ");
+            }
+            const dataWeather = {
+              id: data.id,
+              city: data.name,
+              country: data.sys.country,
+              sunrise: formatTime(data.sys.sunrise, data.timezone),
+              sunset: formatTime(data.sys.sunset, data.timezone),
+              description: data.weather[0].description,
+              icon: data.weather[0].icon,
+              windDeg: data.wind.deg,
+              windGust: data.wind.gust,
+              windSpeed: data.wind.speed,
+              feels_like: data.main.feels_like,
+              humidity: data.main.humidity,
+              pressure: data.main.pressure,
+              temp: data.main.temp,
+              visibility: data.visibility,
+            };
+            setWeather((prev) => [dataWeather]);
+          } catch (error) {
+            console.error("Error in getWeatherLogCity: ", error);
+          }
+        };
+
+        const formatTime = (unixSeconds, tzOffset = 0) => {
+          const date = new Date((unixSeconds + tzOffset) * 1000);
+          return date.toLocaleTimeString("vi-VN", {
+            hour: "2-digit",
+            minute: "2-digit",
+            timeZone: "UTC",
+          });
+        };
+
+        const getCurrentTime = () => {
+          const now = new Date();
+          return now.toLocaleTimeString("vi-VN", {
+            hour: "2-digit",
+            minute: "2-digit",
+            second: "2-digit",
+          });
+        };
+
+        const handleReset = (e) => {
+          const target = e.target.closest(".reset");
+          if (!target) return;
+          const city = target.closest(".weather-card").getAttribute("name");
+          getWeatherLogCity(city);
+        };
+
+        const handleGetWeather = (e) => {
+          const addNewcity = e.target.closest(".add-newcity");
+          if (!addNewcity) return;
+          if (!newCity && addNewcity) setError("Vui lòng nhập tên thành phố!");
+          const parents = addNewcity.closest(".weather-input");
+          const cityInput = parents.querySelector("#cityInput");
+
+          if (cityInput && newCity) {
+            getWeatherLogCity(newCity);
+            cityInput.focus();
+            setNewCity("");
+          }
+        };
+
+        const handleInputChange = (e) => {
+          const value = e.target.value;
+          setNewCity(value.trim());
+        };
+
+        const handleInputFocus = () => {
+          setError("");
+        };
+
+        const handleKeyDown = (e) => {
+          if (e.key === "Enter") {
+            if (!newCity.trim()) {
+              setError("Vui lòng nhập tên thành phố!");
+              e.target.focus();
+              return;
+            }
+            getWeatherLogCity(newCity);
+            setNewCity("");
+          }
+        };
+
+        const Weather = ({ weather }) => {
+          return weather.map((w) => (
+            <div key={w.id} name={w.city} id={w.id} className="weather-card">
+              <div className="card-head">
+                <div className="country">
+                  <h2>{w.city}</h2>
+                  <p>{w.country}</p>
+                </div>
+                <div className="quick-info">
+                  <div className="temp">{w.temp}°C</div>
+                  <div className="description">{w.description}</div>
+                </div>
+              </div>
+
+              <div className="icon">
+                <img
+                  src={`http://openweathermap.org/img/wn/${w.icon}@2x.png`}
+                  alt="Weather Icon"
+                />
+              </div>
+
+              <div className="details">
+                <div className="humidity-pressure ">
+                  <div className="humidity">
+                    <div className="label">Độ ẩm:</div>
+                    <div className="value">{w.humidity}%</div>
+                  </div>
+
+                  <div className="pressure">
+                    <div className="label">Áp suất:</div>
+                    <div className="value">{w.pressure} hPa</div>
+                  </div>
+                </div>
+
+                <div className="meta">
+                  <p className="feels">
+                    Cảm giác: {Math.floor(w.feels_like)} °C
+                  </p>
+                  <p className="visibility">
+                    Tầm nhìn: {w.visibility / 1000} km
+                  </p>
+                </div>
+
+                <div className="wind">
+                  <p className="speed">Gió: {w.windSpeed} m/s</p>
+                  <p className="gust">Gió giật: {w.windGust} m/s</p>
+                </div>
+                <div className="sun">
+                  <p>Mặt trời mọc: {w.sunrise} </p>
+                  <p>Mặt trời lặn: {w.sunset} </p>
+                </div>
+
+                <div className="weather-updated">
+                  <div className="last-updated">
+                    Cập nhật lần cuối: {getCurrentTime()}
+                  </div>
+                  <div className="reset" onClick={handleReset}>
+                    <img src="../../reset.svg" alt="reset" />
+                  </div>
+                </div>
+              </div>
+            </div>
+          ));
+        };
+
+        const Loading = () => (
+          <div className="loading">
+            <svg
+              width="250"
+              height="250"
+              viewBox="0 0 50 50"
+              xmlns="http://www.w3.org/2000/svg">
+              <circle
+                cx="25"
+                cy="25"
+                r="20"
+                stroke="#646cff"
+                strokeLinecap="round"
+                strokeWidth="2"
+                fill="none"
+                strokeDasharray="31.4"
+                strokeDashoffset="0">
+                <animateTransform
+                  attributeName="transform"
+                  type="rotate"
+                  from="0 25 25"
+                  to="360 25 25"
+                  dur="1s"
+                  repeatCount="indefinite"
+                />
+              </circle>
+              <text
+                x="25"
+                y="25"
+                textAnchor="middle"
+                dominantBaseline="middle"
+                fontSize="6"
+                fontWeight="700"
+                fill="#646cff">
+                Loading…
+              </text>
+            </svg>
+          </div>
+        );
 
         return (
           <div className="container">
             <Header />
             <div className="exercise-content">
               <h2>Bài tập 6: Weather App</h2>
-              <div className="answer-content"></div>
+
+              <div className="answer-content weather-city">
+                {error && (
+                  <p className="error">
+                    {error}
+                    <span onClick={() => setError("")}>❌</span>
+                  </p>
+                )}
+                <div className="list-weather-city">
+                  {!weather.length ? (
+                    <Loading />
+                  ) : (
+                    <Weather weather={weather} />
+                  )}
+                </div>
+                <div className="weather-input" onClick={handleGetWeather}>
+                  <input
+                    onChange={handleInputChange}
+                    onKeyDown={handleKeyDown}
+                    onFocus={handleInputFocus}
+                    type="text"
+                    value={newCity}
+                    placeholder="Nhập thành phố của bạn"
+                    id="cityInput"
+                  />
+                  <button className="add-newcity">Xem thời tiết</button>
+                </div>
+              </div>
             </div>
           </div>
         );
       }
 
       const root = ReactDOM.createRoot(document.getElementById("root"));
-      root.render(<Weather />);
+      root.render(<Weathers />);
     </script>
   </body>
 </html>
+
+<!-- Repositories -->

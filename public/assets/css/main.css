@@ -3,6 +3,13 @@
   --bg-color: #fff8f8;
   --gotoback-shadow: rgba(123, 123, 123, 0.33);
 
+  --background: #f0f2f5;
+  --card-bg: linear-gradient(135deg, #74ebd5, #acb6e5);
+  --shadow: rgba(0, 0, 0, 0.2);
+  --input-border: #ccc;
+  --button-bg: #1e90ff;
+  --button-hover: #1565c0;
+
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
@@ -26,6 +33,15 @@ html.dark {
   --post-time-bgr: rgba(123, 123, 123, 0.33);
   --post-time-color: #f8f8f8;
   --details-bgr: #57575c;
+  /*  */
+
+  --background: #121212;
+  --card-bg: linear-gradient(45deg, #151f2a, #509ada);
+  --text-color: #e0e0e0;
+  --shadow: rgba(255, 255, 255, 0.1);
+  --input-border: #555;
+  --button-bg: #0288d1;
+  --button-hover: #01579b;
 }
 
 * {
@@ -627,6 +643,143 @@ button.close-bog-detail-btn {
 /* === Bài 6. Weather App === */
 /* ===================== */
 
+.weather-city {
+  width: 100%;
+}
+.list-weather-city {
+  display: flex;
+  flex-wrap: wrap;
+}
+.weather-card {
+  width: 312px;
+  height: 424px;
+  padding: 20px;
+  text-align: left;
+  margin: auto;
+  border-radius: 10px;
+  margin-bottom: 30px;
+  color: var(--text-color);
+  background: var(--card-bg);
+  box-shadow: 0 4px 8px var(--shadow);
+  transition: background 0.3s ease, color 0.3s ease;
+}
+.card-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.country {
+  text-align: left;
+}
+
+.weather-card h2 {
+  margin: 0;
+  font-size: 18px;
+  text-transform: capitalize;
+}
+
+.weather-card .icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.weather-card .icon img {
+  width: 60px;
+  height: 60px;
+  margin: 10px 0;
+}
+
+.weather-card .temp {
+  font-size: 24px;
+  font-weight: bold;
+  margin: 5px 0;
+}
+
+.weather-card .description {
+  font-size: 14px;
+  text-transform: capitalize;
+  margin: 5px 0;
+}
+
+.weather-card .details {
+  font-size: 12px;
+  margin-top: 10px;
+}
+
+.meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 1.2rem;
+  margin-top: 24px;
+}
+
+.wind,
+.humidity-pressure {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.sun p {
+  text-align: center;
+}
+
+.weather-card .details p {
+  margin: 5px 0;
+  flex: 1;
+}
+
+.weather-input {
+  display: flex;
+  align-items: center;
+  margin: 30px auto;
+  width: 50%;
+}
+
+.weather-input input {
+  flex: 1;
+  padding: 8px 16px;
+  border: 1px solid var(--input-border);
+  border-radius: 6px 0 0 6px;
+  font-size: 14px;
+  outline: none;
+  background-color: var(--background);
+  color: var(--text-color);
+}
+
+.weather-input button {
+  padding: 8px 10px;
+  border: none;
+  background-color: var(--button-bg);
+  color: var(--text-color);
+  border-radius: 0 6px 6px 0;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.weather-input button:hover {
+  background-color: var(--button-hover);
+}
+.weather-updated {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+.weather-updated .reset {
+  width: 26px;
+  display: flex;
+  height: 26px;
+  cursor: pointer;
+  transition: opacity 0.2s linear;
+}
+.weather-updated .reset:hover {
+  opacity: 0.6;
+}
+/* ===================== */
+
 .loading {
   display: flex;
   align-items: center;
@@ -644,4 +797,37 @@ button.close-bog-detail-btn {
 }
 .answer-content {
   margin-top: 30px;
+}
+.error {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  min-width: 400px;
+  padding-inline: 50px;
+  height: 60px;
+  margin: auto;
+  color: red;
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  text-align: center;
+  border: 1px solid currentColor;
+  background: #ffd7d7;
+  border-radius: 8px;
+}
+.error span {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: -4px;
+  right: 0;
+  font-size: 16px;
+  font-weight: 400;
+  cursor: pointer;
+  padding: 10px;
 }
