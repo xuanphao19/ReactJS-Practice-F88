@@ -48,32 +48,32 @@ const exercises = [
     children: [
       {
         id: "exercises_2_1",
-        title: "Chờ cập nhật",
+        title: "Đang cập nhật dữ liệu",
         url: "exercises_2/counter",
       },
       {
         id: "exercises_2_2",
-        title: "Chờ cập nhật",
+        title: "Đang cập nhật dữ liệu",
         url: "exercises_2/todo",
       },
       {
         id: "exercises_2_3",
-        title: "Chờ cập nhật",
+        title: "Đang cập nhật dữ liệu",
         url: "exercises_2/profile",
       },
       {
         id: "exercises_2_4",
-        title: "Chờ cập nhật",
+        title: "Đang cập nhật dữ liệu",
         url: "exercises_2/products",
       },
       {
         id: "exercises_2_5",
-        title: "Chờ cập nhật",
+        title: "Đang cập nhật dữ liệu",
         url: "exercises_2/comments",
       },
       {
         id: "exercises_2_6",
-        title: "Chờ cập nhật",
+        title: "Đang cập nhật dữ liệu",
         url: "exercises_2/weather",
       },
     ],
@@ -86,32 +86,32 @@ const exercises = [
     children: [
       {
         id: "exercises_3_1",
-        title: "Chờ cập nhật",
+        title: "Đang cập nhật dữ liệu",
         url: "exercises_3/counter",
       },
       {
         id: "exercises_3_2",
-        title: "Chờ cập nhật",
+        title: "Đang cập nhật dữ liệu",
         url: "exercises_3/todo",
       },
       {
         id: "exercises_3_3",
-        title: "Chờ cập nhật",
+        title: "Đang cập nhật dữ liệu",
         url: "exercises_3/profile",
       },
       {
         id: "exercises_3_4",
-        title: "Chờ cập nhật",
+        title: "Đang cập nhật dữ liệu",
         url: "exercises_3/products",
       },
       {
         id: "exercises_3_5",
-        title: "Chờ cập nhật",
+        title: "Đang cập nhật dữ liệu",
         url: "exercises_3/comments",
       },
       {
         id: "exercises_3_6",
-        title: "Chờ cập nhật",
+        title: "Đang cập nhật dữ liệu",
         url: "exercises_3/weather",
       },
     ],
@@ -143,11 +143,12 @@ function App() {
     );
   }
 
-  const Navigations = ({ items, isRoot = false }) => {
+  const Navigations = ({ items, isRoot = false, index = null }) => {
     const [open, setOpen] = useState({});
-
     const handleOpen = (e) => {
-      const id = e.target.id;
+      const target = e.target.closest(".nav-label");
+      if (!target) return;
+      const id = target.id;
       setOpen((prev) => ({
         ...prev,
         [id]: !prev[id],
@@ -164,14 +165,31 @@ function App() {
                 className={`nav-label${open[item.id] ? " open" : ""}`}
                 onClick={handleOpen}>
                 {item.title}
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  width={"1em"}
+                  height={"1em"}
+                  viewBox="0 0 24 24"
+                  strokeWidth={1.5}
+                  stroke="currentColor"
+                  className="arrow-right">
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M12.75 15l3-3m0 0l-3-3m3 3h-7.5M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                  />
+                </svg>
               </span>
             ) : (
               <a href={`./exercises/${item.url}.html`}>
-                {`Bài tập ${i + 1}: ${item.title}`}
+                {`Bài tập ${index !== null ? `${index + 1}-` : ""}${i + 1}: ${
+                  item.title
+                }`}
               </a>
             )}
 
-            {item.children && <Navigations items={item.children} />}
+            {item.children && <Navigations items={item.children} index={i} />}
           </li>
         ))}
       </ul>
@@ -186,31 +204,6 @@ function App() {
       content
     );
   };
-
-  function Navigation() {
-    return (
-      <nav>
-        <ul>
-          <li>
-            <span className={`nav-label`}>Bài tập buổi một:</span>
-            <ul>
-              {exercises.map((exercise, i) => (
-                <li key={`exercise-${exercise.id}`}>
-                  <a
-                    href={`./exercises/exercises_1/${exercise.url}.html`}>{`Bài tập ${
-                    i + 1
-                  }: ${exercise.name}`}</a>
-                </li>
-              ))}
-            </ul>
-          </li>
-          <li>
-            <span className="nav-label">Bài tập buổi hai:</span>
-          </li>
-        </ul>
-      </nav>
-    );
-  }
 
   return (
     <div className="container">
