@@ -2,7 +2,10 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <link
+      rel="icon"
+      type="image/svg+xml"
+      href="/ReactJS-Practice-F88/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Bài tập 5: Comment System</title>
     <!-- React & ReactDOM từ CDN -->
@@ -35,20 +38,24 @@
 
         const Header = () => {
           const ToggleTheme = () => {
-            const [theme, setTheme] = useState(() => {
-              return localStorage.getItem("theme");
-            });
+            const [theme, setTheme] = useState("");
             useEffect(() => {
-              document.documentElement.classList.toggle(
-                "dark",
-                theme === "dark",
-              );
-              localStorage.setItem("theme", theme);
+              let localTheme = localStorage.getItem("theme");
+              setTheme(!localTheme ? "dark" : localTheme);
+            }, []);
+
+            useEffect(() => {
+              document.documentElement.className = theme;
             }, [theme]);
 
             const toggle = () => {
-              setTheme(theme === "dark" ? "" : "dark");
+              setTheme(theme === "dark" ? "light" : "dark");
+              localStorage.setItem(
+                "theme",
+                theme === "dark" ? "light" : "dark",
+              );
             };
+
             return (
               <button className="toggle-theme" onClick={toggle}>
                 {theme === "dark" ? "🌙" : "☀️"}
