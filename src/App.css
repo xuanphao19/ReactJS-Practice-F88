@@ -9,39 +9,50 @@
   margin-top: 50px;
 }
 
+h2.exercises {
+  margin-bottom: 20px;
+}
+
 nav {
   margin-top: 50px;
   font-size: 1.6rem;
 }
 nav ul ul {
-  margin-left: 1rem;
-}
-nav ul {
-  /* max-height: 0; */
-  /* opacity: 0; */
-  overflow: hidden;
-  padding-left: 0.5rem;
+  margin-left: 1.5rem;
+  padding-left: 10px;
   border-left: 1px solid #ddd;
-  transition: max-height 0.4s ease, opacity 0.3s ease;
+}
+nav ul ul {
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  transition: margin-block 0.4s ease, max-height 0.4s ease, opacity 0.3s ease;
 }
 
 .nav-label {
-  margin-block: 10px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
   font-size: 1.8rem;
 }
 .nav-label::after {
-  content: "▶";
-  margin-left: 8px;
+  content: ">";
+  margin-bottom: 2px;
+  font-size: 20px;
   color: #50a14f;
-  transition: transform 0.3s ease;
+  transition: translate, transform 0.3s ease;
 }
 nav .nav-label.open + ul {
   max-height: 500px;
+  margin-block: 10px;
   opacity: 1;
 }
-.open.nav-label::before {
-  transform: rotate(90deg);
+
+.nav-label.open::after {
+  transform: rotate(450deg);
+  translate: 0 4px;
 }
+
 nav li {
   list-style: none;
   margin-bottom: 6px;
