@@ -19,6 +19,20 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+html,
+body {
+  overflow-y: scroll;
+}
+::-webkit-scrollbar {
+  width: 2px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background-color: rgb(9, 255, 13);
+  border-radius: 999px;
+}
 
 html.dark {
   --bg-color: #17171a;
@@ -779,6 +793,7 @@ button.close-bog-detail-btn {
 .weather-updated .reset:hover {
   opacity: 0.6;
 }
+
 /* ===================== */
 
 .loading {

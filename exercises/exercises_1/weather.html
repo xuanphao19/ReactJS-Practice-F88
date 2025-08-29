@@ -85,7 +85,7 @@
           }
         }, [currentCity]);
 
-        function normalizeCityName(str) {
+        function formatCity(str) {
           return str
             .trim()
             .toLowerCase()
@@ -93,16 +93,14 @@
         }
 
         const getWeatherLogCity = async (desiredCity = null) => {
-          const city = desiredCity
-            ? normalizeCityName(desiredCity.trim())
-            : "Hanoi";
+          const city = desiredCity ? formatCity(desiredCity.trim()) : "Hanoi";
           try {
             const response = await fetch(
               `${API_ENDPOINT.WEATHER}appid=${WEATHER_ID}&q=${city}&lang=vi`,
             );
             const data = await response.json();
             if (data.cod !== 200) {
-              setError("Thành phố không có trong kho dữ liệu!");
+              setError(`${newCity} City, không có trong kho dữ liệu!`);
               throw new Error(data.message || "Không tìm thấy thành phố");
             }
             if (!data.sys || !data.weather || !data.main) {
@@ -125,6 +123,7 @@
               pressure: data.main.pressure,
               temp: data.main.temp,
               visibility: data.visibility,
+              lastUpdated: getCurrentTime(),
             };
             setWeather((prev) => [dataWeather]);
           } catch (error) {
@@ -246,9 +245,9 @@
 
                 <div className="weather-updated">
                   <div className="last-updated">
-                    Cập nhật lần cuối: {getCurrentTime()}
+                    Cập nhật lần cuối: {w.lastUpdated}
                   </div>
-                  <div className="reset" onClick={handleReset}>
+                  <div className={`reset`} onClick={handleReset}>
                     <img src="../../reset.svg" alt="reset" />
                   </div>
                 </div>
@@ -344,7 +343,6 @@
       const root = ReactDOM.createRoot(document.getElementById("root"));
       root.render(<Weathers />);
     </script>
+
   </body>
 </html>
-
-<!-- Repositories -->
