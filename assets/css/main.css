@@ -599,7 +599,7 @@ button.close-bog-detail-btn {
   padding: 20px;
   border-radius: 8px;
   background: #ffffff8f;
-  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  box-shadow: #7f91ff 0px 8px 24px;
 }
 .form-data #name,
 .form-data #email {
@@ -610,6 +610,7 @@ button.close-bog-detail-btn {
   padding: 10px;
   outline: none;
   border: 1px solid #ccc;
+  background: #272a3d70;
   border-radius: 6px;
 }
 .form-data #body {
@@ -620,6 +621,7 @@ button.close-bog-detail-btn {
   padding: 10px;
   resize: vertical;
   outline: none;
+  background: #272a3d70;
   border: 1px solid #ccc;
   border-radius: 6px;
 }
@@ -646,6 +648,7 @@ button.close-bog-detail-btn {
   pointer-events: none;
   outline: none;
   opacity: 0.7;
+  box-shadow: #213547 0px 2px 8px;
 }
 
 .user {
@@ -850,7 +853,6 @@ button.close-bog-detail-btn {
 }
 .repositories {
   display: flex;
-  margin-top: 20px;
   font-size: 20px;
 }
 
