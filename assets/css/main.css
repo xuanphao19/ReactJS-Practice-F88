@@ -810,6 +810,12 @@ button.close-bog-detail-btn {
   width: 100%;
   height: 100%;
 }
+
+.loading img {
+  width: 350px;
+  height: 350px;
+}
+
 .exercise-content {
   display: flex;
   margin-inline: auto;
