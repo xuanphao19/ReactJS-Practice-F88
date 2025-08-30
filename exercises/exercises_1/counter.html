@@ -31,6 +31,13 @@
         const [count, setCount] = useState(0);
         const [pressed, setPressed] = React.useState(false);
 
+        useEffect(() => {
+          const isProduct =
+            window.location.hostname !== "localhost" &&
+            window.location.hostname !== "127.0.0.1";
+          setPath(isProduct ? "/ReactJS-Practice-F88" : "/");
+        }, []);
+
         const calculate = (event) => {
           event.preventDefault();
           const id = event.currentTarget.id;
@@ -44,13 +51,6 @@
           setPressed(true);
           setTimeout(() => setPressed(false), 200);
         };
-
-        useEffect(() => {
-          const isProduct =
-            window.location.hostname !== "localhost" &&
-            window.location.hostname !== "127.0.0.1";
-          setPath(isProduct ? "/ReactJS-Practice-F88" : "/");
-        }, []);
 
         const Header = () => {
           const ToggleTheme = () => {
