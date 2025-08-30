@@ -672,7 +672,7 @@ button.close-bog-detail-btn {
 }
 .weather-card {
   width: 312px;
-  height: 424px;
+  min-height: 424px;
   padding: 20px;
   text-align: left;
   margin: auto;

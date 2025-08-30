@@ -3,7 +3,7 @@ import Home from "../pages/Home/Home";
 import Comments from "../homework/homework_2/Homework_2_5";
 import Products from "../homework/homework_2/Homework_2_4";
 import Profile from "../homework/homework_2/Homework_2_3";
-import Counter from "../homework/homework_2/H'omework_2_1";
+import Counter from "../homework/homework_2/Homework_2_1.jsx";
 import TodoApp from "../homework/homework_2/Homework_2_2";
 import Weathers from "../homework/homework_2/Homework_2_6";
 function AppRoutes() {

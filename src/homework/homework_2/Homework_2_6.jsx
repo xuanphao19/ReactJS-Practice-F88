@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import Header from "../../layout/Header/Header";
 import Loading from "../../components/Loading";
+import resetIcon from "/reset.svg";
 
 const WEATHER_ID = "fdfd8bff8ab5b53fdd7ca82ef272712e";
 const API_ENDPOINT = {
@@ -37,6 +38,7 @@ function Weathers() {
 
   const getWeatherLogCity = async (desiredCity = null) => {
     const city = desiredCity ? formatCity(desiredCity.trim()) : "Hanoi";
+
     try {
       const response = await fetch(
         `${API_ENDPOINT.WEATHER}appid=${WEATHER_ID}&q=${city}&lang=vi`,
@@ -102,7 +104,7 @@ function Weathers() {
   const handleGetWeather = (e) => {
     const addNewcity = e.target.closest(".add-newcity");
     if (!addNewcity) return;
-    if (!newCity && addNewcity) setError("Vui lòng nhập tên thành phố!");
+    if (!newCity) setError("Vui lòng nhập tên thành phố!");
     const parents = addNewcity.closest(".weather-input");
     const cityInput = parents.querySelector("#cityInput");
 
@@ -115,7 +117,7 @@ function Weathers() {
 
   const handleInputChange = (e) => {
     const value = e.target.value;
-    setNewCity(value.trim());
+    setNewCity(value);
   };
 
   const handleInputFocus = () => {
@@ -187,7 +189,7 @@ function Weathers() {
               Cập nhật lần cuối: {w.lastUpdated}
             </div>
             <div className={`reset`} onClick={handleReset}>
-              <img src="../../reset.svg" alt="reset" />
+              {<img src={resetIcon} alt="reset" />}
             </div>
           </div>
         </div>
@@ -200,7 +202,6 @@ function Weathers() {
       <Header />
       <div className="exercise-content">
         <h2>Bài tập 2.6: Weather App ROUTES</h2>
-
         <a
           href="https://github.com/xuanphao19/ReactJS-Practice-F88/blob/main/src/homework/homework_2/Homework_2_6.jsx"
           className="repositories">
