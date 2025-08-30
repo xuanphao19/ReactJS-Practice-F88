@@ -4,8 +4,19 @@
     <meta charset="utf-8" />
     <title>Single Page App</title>
     <script>
-      // Chuyển hướng về index.html với đường dẫn gốc
-      window.location.href = window.location.origin + "/ReactJS-Practice-F88/";
+      // Lấy đường dẫn hiện tại (bao gồm pathname, search, hash)
+      const path =
+        window.location.pathname +
+        window.location.search +
+        window.location.hash;
+      // Chuyển hướng về index.html, giữ nguyên đường dẫn gốc
+      window.history.replaceState(
+        {},
+        "",
+        path.replace(/^\/ReactJS-Practice-F88/, "/ReactJS-Practice-F88"),
+      );
+      // Tải lại trang để react-router-dom xử lý
+      window.location.href = window.location.origin + path;
     </script>
   </head>
   <body></body>
