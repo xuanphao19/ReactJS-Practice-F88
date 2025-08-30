@@ -26,6 +26,15 @@
       let uniqId = 0;
 
       const Header = () => {
+        const [path, setPath] = useState("/");
+
+        useEffect(() => {
+          const isProduct =
+            window.location.hostname !== "localhost" &&
+            window.location.hostname !== "127.0.0.1";
+          setPath(isProduct ? "/ReactJS-Practice-F88/" : "/");
+        }, []);
+
         const ToggleTheme = () => {
           const [theme, setTheme] = useState(() => {
             const localTheme = localStorage.getItem("theme");
@@ -53,7 +62,7 @@
           <header id="header">
             <div className="header">
               <h1 className="slogan">Conquer ReactJS with F8 🚀 </h1>
-              <a className="gotoback" href="/ReactJS-Practice-F88/index.html">
+              <a className="gotoback" href={path}>
                 Home
               </a>
               <ToggleTheme />

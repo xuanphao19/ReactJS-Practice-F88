@@ -1,134 +1,28 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { NavLink } from "react-router";
-import { ROUTES } from "../../config/routes.prefix";
-
-const menuRoutes = [
-  {
-    id: "homework_2",
-    title: "Bài tập buổi hai:",
-    url: "",
-    children: [
-      {
-        id: "homework_2_1",
-        title: "Counter App",
-        url: ROUTES.COUNTER,
-      },
-      {
-        id: "homework_2_2",
-        title: "Todo App",
-        url: ROUTES.TODOAPP,
-      },
-      {
-        id: "homework_2_3",
-        title: "Profile App",
-        url: ROUTES.PROFILE,
-      },
-      {
-        id: "homework_2_4",
-        title: "Products App",
-        url: ROUTES.PRODUCTS,
-      },
-      {
-        id: "homework_2_5",
-        title: "Comment App",
-        url: ROUTES.COMMENT,
-      },
-      {
-        id: "homework_2_6",
-        title: "Weathers App",
-        url: ROUTES.WEATHERS,
-      },
-    ],
-  },
-
-  {
-    id: "homework_3",
-    title: "Bài tập buổi ba:",
-    url: "",
-    children: [
-      {
-        id: "homework_3_1",
-        title: "Đang cập nhật dữ liệu",
-        url: "homework_3/counter",
-      },
-    ],
-  },
-
-  {
-    id: "homework_4",
-    title: "Bài tập buổi Bốn:",
-    url: "",
-    children: [
-      {
-        id: "homework_4_1",
-        title: "Đang cập nhật dữ liệu",
-        url: "homework_4/counter",
-      },
-      {
-        id: "homework_4_2",
-        title: "Đang cập nhật dữ liệu",
-        url: "homework_4/todo",
-      },
-      {
-        id: "homework_4_3",
-        title: "Đang cập nhật dữ liệu",
-        url: "homework_4/profile",
-      },
-    ],
-  },
-];
-
-const exercises = [
-  {
-    id: "exercises_1",
-    title: "Bài tập buổi một:",
-    url: "",
-    children: [
-      {
-        id: "exercises_1_1",
-        title: "Counter App",
-        url: "exercises_1/counter",
-      },
-      {
-        id: "exercises_1_2",
-        title: "Todo List App",
-        url: "exercises_1/todo",
-      },
-      {
-        id: "exercises_1_3",
-        title: "Profile Card",
-        url: "exercises_1/profile",
-      },
-      {
-        id: "exercises_1_4",
-        title: "Product List",
-        url: "exercises_1/products",
-      },
-      {
-        id: "exercises_1_5",
-        title: "Comment System",
-        url: "exercises_1/comments",
-      },
-      {
-        id: "exercises_1_6",
-        title: "Weather App",
-        url: "exercises_1/weather",
-      },
-    ],
-  },
-];
+import { ROUTES_MENU, EXERCISES } from "../../config/routes.prefix";
 
 // export const NavigHome = () => {
 //   return <Navigations items={menuRoutes} isHome={true} />;
 // };
 
 const Navigations = ({
-  items = exercises,
+  items = EXERCISES,
   isRoot = false,
   index = null,
   isHome = false,
 }) => {
   const [open, setOpen] = useState({});
+  const [isLocal, setIsLocal] = useState(true);
+  const [path, setPath] = useState("");
+
+  useEffect(() => {
+    setIsLocal(import.meta.env.MODE === "production");
+  }, []);
+
+  useEffect(() => {
+    setPath(!isLocal ? "" : "/ReactJS-Practice-F88");
+  }, [isLocal]);
 
   const handleOpen = (e) => {
     const target = e.target.closest(".nav-label");
@@ -168,13 +62,13 @@ const Navigations = ({
             </span>
           ) : isHome ? (
             <NavLink to={item.url}>
-              {`Bài tập ${index !== null ? `${index + 2}_` : ""}${i + 1}: ${
+              {`Bài  ${index !== null ? `${index + 2}_` : ""}${i + 1}: ${
                 item.title
               }`}
             </NavLink>
           ) : (
-            <a href={`./exercises/${item.url}.html`}>
-              {`Bài tập ${index !== null ? `${index + 1}_` : ""}${i + 1}: ${
+            <a href={`${path}/exercises/${item.url}.html`}>
+              {`Bài  ${index !== null ? `${index + 1}_` : ""}${i + 1}: ${
                 item.title
               }`}
             </a>
@@ -192,7 +86,7 @@ const Navigations = ({
     <nav>
       <h2 className={`exercises`}>Bài tập thực hành:</h2>
       {content}
-      <Navigations items={menuRoutes} isHome={true} />
+      <Navigations items={ROUTES_MENU} isHome={true} />
     </nav>
   ) : (
     content

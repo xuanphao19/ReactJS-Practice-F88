@@ -30,7 +30,10 @@ file sẽ được tổ chức rõ ràng để dễ dàng tra cứu.
 
 - Nội dung:
 
-  - [React CDN link](https://legacy.reactjs.org/docs/cdn-links.html)
+  - [ReactJS là gì?](https://vi.react.dev/learn)
+  - [SSR (Client-Side Rendering) và CSR (Server-Side Rendering)](https://web.dev/articles/rendering-on-the-web?utm_source=chatgpt.com&hl=vi)
+
+  - [React CDN link](https://vi.reactjs.org/docs/cdn-links.html)
   - Khởi tạo root và
     [render](https://vi.legacy.reactjs.org/docs/rendering-elements.html)
     component cơ bản.

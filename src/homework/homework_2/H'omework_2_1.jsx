@@ -23,9 +23,9 @@ function Counter() {
     <div className="container">
       <Header />
       <div className="exercise-content">
-        <h2 className="exercise_1">Bài tập 1.1: Counter App</h2>
+        <h2 className="exercise_1">Bài tập 2.1: Counter App ROUTES</h2>
         <a
-          href="https://github.com/xuanphao19/ReactJS-Practice-F88/blob/main/public/exercises/exercises_1/counter.html"
+          href="https://github.com/xuanphao19/ReactJS-Practice-F88/blob/main/src/homework/homework_2/H'omework_2_1.jsx"
           className="repositories">
           Repositories GitHub
         </a>

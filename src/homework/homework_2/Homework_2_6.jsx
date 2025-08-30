@@ -199,10 +199,10 @@ function Weathers() {
     <div className="container">
       <Header />
       <div className="exercise-content">
-        <h2>Bài tập 6: Weather App</h2>
+        <h2>Bài tập 2.6: Weather App ROUTES</h2>
 
         <a
-          href="https://github.com/xuanphao19/ReactJS-Practice-F88/blob/main/public/exercises/exercises_1/weather.html"
+          href="https://github.com/xuanphao19/ReactJS-Practice-F88/blob/main/src/homework/homework_2/Homework_2_6.jsx"
           className="repositories">
           Repositories GitHub
         </a>

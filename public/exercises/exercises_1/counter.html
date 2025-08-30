@@ -27,8 +27,16 @@
       const { useState, useEffect } = React;
 
       function Counter() {
+        const [path, setPath] = useState("/");
         const [count, setCount] = useState(0);
         const [pressed, setPressed] = React.useState(false);
+
+        useEffect(() => {
+          const isProduct =
+            window.location.hostname !== "localhost" &&
+            window.location.hostname !== "127.0.0.1";
+          setPath(isProduct ? "/ReactJS-Practice-F88/" : "/");
+        }, []);
 
         const calculate = (event) => {
           event.preventDefault();
@@ -70,7 +78,7 @@
             <header id="header">
               <div className="header">
                 <h1 className="slogan">Conquer ReactJS with F8 🚀 </h1>
-                <a className="gotoback" href="/ReactJS-Practice-F88/index.html">
+                <a className="gotoback" href={path}>
                   Home
                 </a>
                 <ToggleTheme />

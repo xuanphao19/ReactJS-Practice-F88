@@ -130,9 +130,9 @@ function Products() {
       <Header />
 
       <div className="exercise-content">
-        <h2>Bài tập 1.4: Product List</h2>
+        <h2>Bài tập 2.4: Product List ROUTES</h2>
         <a
-          href="https://github.com/xuanphao19/ReactJS-Practice-F88/blob/main/public/exercises/exercises_1/products.html"
+          href="https://github.com/xuanphao19/ReactJS-Practice-F88/blob/main/src/homework/homework_2/Homework_2_4.jsx"
           className="repositories">
           Repositories GitHub
         </a>

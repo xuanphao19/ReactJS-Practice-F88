@@ -73,9 +73,9 @@ function TodoApp() {
     <div className="container">
       <Header />
       <div className="exercise-content">
-        <h2 className="exercise_1">Bài tập 1.2: Todo List App</h2>
+        <h2 className="exercise_1">Bài tập 2.2: Todo List App ROUTES</h2>
         <a
-          href="https://github.com/xuanphao19/ReactJS-Practice-F88/blob/main/public/exercises/exercises_1/todo.html"
+          href="https://github.com/xuanphao19/ReactJS-Practice-F88/blob/main/src/homework/homework_2/Homework_2_2.jsx"
           className="repositories">
           Repositories GitHub
         </a>
