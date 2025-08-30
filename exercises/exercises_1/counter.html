@@ -27,6 +27,7 @@
       const { useState, useEffect } = React;
 
       function Counter() {
+        const [path, setPath] = useState("/");
         const [count, setCount] = useState(0);
         const [pressed, setPressed] = React.useState(false);
 
@@ -43,6 +44,13 @@
           setPressed(true);
           setTimeout(() => setPressed(false), 200);
         };
+
+        useEffect(() => {
+          const isProduct =
+            window.location.hostname !== "localhost" &&
+            window.location.hostname !== "127.0.0.1";
+          setPath(isProduct ? "/ReactJS-Practice-F88" : "/");
+        }, []);
 
         const Header = () => {
           const ToggleTheme = () => {
@@ -70,7 +78,7 @@
             <header id="header">
               <div className="header">
                 <h1 className="slogan">Conquer ReactJS with F8 🚀 </h1>
-                <a className="gotoback" href="./">
+                <a className="gotoback" href={path}>
                   Home
                 </a>
                 <ToggleTheme />
