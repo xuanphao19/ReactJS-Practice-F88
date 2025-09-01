@@ -17,7 +17,7 @@ function SetupRouter() {
         <h2>
           Bài 2.1.1.a: Setup ROUTES:{" "}
           <a
-            href="https://github.com/xuanphao19/ReactJS-Practice-F88/blob/main/src/homework/homework_2/H'omework_2_1.jsx"
+            href="https://github.com/xuanphao19/ReactJS-Practice-F88/blob/main/src/AppRoutes/AppRoutes.jsx"
             className="repositories">
             Repositories GitHub
           </a>
@@ -25,7 +25,7 @@ function SetupRouter() {
         <h2>
           Bài 2.1.1.b: Setup Navigation:
           <a
-            href="https://github.com/xuanphao19/ReactJS-Practice-F88/blob/main/src/homework/homework_2/H'omework_2_1.jsx"
+            href="https://github.com/xuanphao19/ReactJS-Practice-F88/blob/main/src/homework/homework_2/SetupRouter/SetupRouter.jsx"
             className="repositories">
             Repositories GitHub
           </a>

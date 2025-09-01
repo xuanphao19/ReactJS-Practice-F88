@@ -66,7 +66,7 @@ function Comments() {
       <Navigation>
         <h2>Bài tập 2.5: Comment System</h2>
         <a
-          href="https://github.com/xuanphao19/ReactJS-Practice-F88/blob/main/src/homework/homework_2/Homework_2_5.jsx"
+          href="https://github.com/xuanphao19/ReactJS-Practice-F88/blob/main/src/homework/homework_2/Homework_2_5/Homework_2_5.jsx"
           className="repositories">
           Repositories GitHub
         </a>

@@ -35,7 +35,7 @@ function Profile() {
       <Navigation>
         <h2>Bài tập 2.1.4: Profile Card</h2>
         <a
-          href="https://github.com/xuanphao19/ReactJS-Practice-F88/blob/main/src/homework/homework_2/Homework_2_3.jsx"
+          href="https://github.com/xuanphao19/ReactJS-Practice-F88/blob/main/src/homework/homework_2/Homework_2_3/Homework_2_3.jsx"
           className="repositories">
           Repositories GitHub
         </a>

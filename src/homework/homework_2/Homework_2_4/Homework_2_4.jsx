@@ -138,7 +138,7 @@ function Products() {
       <Navigation>
         <h2>Bài tập 2.1.4: Product List </h2>
         <a
-          href="https://github.com/xuanphao19/ReactJS-Practice-F88/blob/main/src/homework/homework_2/Homework_2_4.jsx"
+          href="https://github.com/xuanphao19/ReactJS-Practice-F88/blob/main/src/homework/homework_2/Homework_2_4/Homework_2_4.jsx"
           className="repositories">
           Repositories GitHub
         </a>

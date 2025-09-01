@@ -210,7 +210,7 @@ function Weathers() {
       <Navigation>
         <h2>Bài tập 2.1.7: Weather App ROUTES</h2>
         <a
-          href="https://github.com/xuanphao19/ReactJS-Practice-F88/blob/main/src/homework/homework_2/Homework_2_6.jsx"
+          href="https://github.com/xuanphao19/ReactJS-Practice-F88/blob/main/src/homework/homework_2/Homework_2_6/Homework_2_6.jsx"
           className="repositories">
           Repositories GitHub
         </a>
