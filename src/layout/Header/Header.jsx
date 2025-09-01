@@ -5,7 +5,7 @@ function Header() {
   const location = useLocation();
   const path = location.pathname;
   return (
-    <div style={{ textAlign: "center", marginTop: "50px" }}>
+    <div style={{ textAlign: "center" }}>
       <div className="container">
         <h1 className="slogan">
           Conquer ReactJS with: I-💕-F8

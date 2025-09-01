@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
-import Header from "../../layout/Header/Header";
-import Loading from "../../components/Loading";
+import Headers from "../../hw_components/Headers/Headers";
+import { Navigation } from "../../hw_components/";
+import Loading from "../../../components/Loading";
 
 function Products() {
   const [posts, setPosts] = useState([]);
@@ -127,15 +128,23 @@ function Products() {
 
   return (
     <div className="container">
-      <Header />
-
-      <div className="exercise-content">
-        <h2>Bài tập 2.4: Product List ROUTES</h2>
+      <Headers>
+        <p className="desc">
+          Chinh phục ReactJS cùng F8 -
+          <a href="https://fullstack.edu.vn/">fullstack.edu.vn</a> Học lập trình
+          để đi làm!
+        </p>
+      </Headers>
+      <Navigation>
+        <h2>Bài tập 2.1.4: Product List </h2>
         <a
           href="https://github.com/xuanphao19/ReactJS-Practice-F88/blob/main/src/homework/homework_2/Homework_2_4.jsx"
           className="repositories">
           Repositories GitHub
         </a>
+      </Navigation>
+
+      <div className="exercise-content">
         <div className="answer-content">
           <div className="blog-list">
             {bloger.length !== 0 ? <Product bloger={bloger} /> : <Loading />}
@@ -156,6 +165,7 @@ function Products() {
           </div>
         </>
       )}
+      {/* <Loading /> */}
     </div>
   );
 }

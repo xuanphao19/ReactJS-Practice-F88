@@ -1,5 +1,6 @@
 import { useState } from "react";
-import Header from "../../layout/Header/Header";
+import Headers from "../../hw_components/Headers/Headers";
+import { Navigation } from "../../hw_components";
 
 function Counter() {
   const [count, setCount] = useState(0);
@@ -21,14 +22,23 @@ function Counter() {
 
   return (
     <div className="container">
-      <Header />
-      <div className="exercise-content">
-        <h2 className="exercise_1">Bài tập 2.1: Counter App ROUTES</h2>
+      <Headers>
+        <p className="desc">
+          Chinh phục ReactJS cùng F8 -
+          <a href="https://fullstack.edu.vn/">fullstack.edu.vn</a> Học lập trình
+          để đi làm!
+        </p>
+      </Headers>
+      <Navigation>
+        <h2 className="exercise_1">Bài tập 2.1.2: Counter App</h2>
         <a
           href="https://github.com/xuanphao19/ReactJS-Practice-F88/blob/main/src/homework/homework_2/H'omework_2_1.jsx"
           className="repositories">
           Repositories GitHub
         </a>
+      </Navigation>
+
+      <div className="exercise-content">
         <div className="calculator">
           <p
             className="result"

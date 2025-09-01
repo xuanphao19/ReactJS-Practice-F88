@@ -1,0 +1,13 @@
+.section {
+  padding-block: 44px;
+  background: #32323499;
+  margin-top: 20px;
+  width: 900px;
+}
+
+.button_group {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 40px 12px;
+  gap: 8px;
+}

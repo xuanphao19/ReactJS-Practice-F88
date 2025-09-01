@@ -19,31 +19,34 @@ function ContentTheory() {
 
     return (
       <ul>
-        {items.map((item, i) => (
-          <li key={item.id}>
-            {!item.url ? (
-              <span
-                id={item.id}
-                className={`nav-label${open[item.id] ? " open" : ""}`}
-                onClick={handleOpen}>
-                {item.title}
-                <img className="arrow-right" src={arrowRight} alt="" />
-              </span>
-            ) : (
-              <a href={item.url} target="_blank" rel="noopener noreferrer">
-                {`Phần ${index !== null ? `${index + 1}_` : ""}${i + 1}: ${
-                  item.title
-                }`}
-              </a>
-            )}
+        {items.map((item, i) => {
+          const newIndex = `${index === null ? i + 1 : index + `_${i + 1}`}`;
+          return (
+            <li key={item.id}>
+              {!item.url ? (
+                <span
+                  id={item.id}
+                  className={`nav-label${open[item.id] ? " open" : ""}`}
+                  onClick={handleOpen}>
+                  {`Phần ${newIndex}: ${item.title}`}
+                  <img className="arrow-right" src={arrowRight} alt="" />
+                </span>
+              ) : (
+                <a href={item.url} target="_blank" rel="noopener noreferrer">
+                  {`Bài ${newIndex}: ${item.title}`}
+                </a>
+              )}
 
-            {item.children && <NavTheory items={item.children} index={i} />}
-          </li>
-        ))}
+              {item.children && (
+                <NavTheory items={item.children} index={newIndex} />
+              )}
+            </li>
+          );
+        })}
       </ul>
     );
   };
-
+  /*   */
   return (
     <div className="basic-theory">
       <h2 className={`exercises`}>Lý thuyết cơ bản:</h2>

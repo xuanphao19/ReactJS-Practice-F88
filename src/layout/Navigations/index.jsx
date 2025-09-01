@@ -37,41 +37,49 @@ const Navigations = ({
 
   const content = (
     <ul>
-      {items.map((item, i) => (
-        <li key={item.id}>
-          {!item.url ? (
-            <span
-              id={item.id}
-              className={`nav-label${open[item.id] ? " open" : ""}`}
-              onClick={handleOpen}>
-              {item.title}
-              <img className="arrow-right" src={arrowRight} alt="" />
-            </span>
-          ) : isHome ? (
-            <NavLink to={item.url}>
-              {`Bài  ${index !== null ? `${index + 2}_` : ""}${i + 1}: ${
-                item.title
-              }`}
-            </NavLink>
-          ) : (
-            <a href={`${path}/exercises/${item.url}.html`}>
-              {`Bài  ${index !== null ? `${index + 1}_` : ""}${i + 1}: ${
-                item.title
-              }`}
-            </a>
-          )}
+      {items.map((item, i) => {
+        i = isHome ? i + 1 : i;
+        const newIndex = `${
+          index === null ? i + 1 : index + `.${isHome ? i : 1 + i}`
+        }`;
+        return (
+          <li key={item.id}>
+            {!item.url ? (
+              <span
+                id={item.id}
+                className={`nav-label${open[item.id] ? " open" : ""}`}
+                onClick={handleOpen}>
+                {`${index === null ? "🏡 Bài tập" : "⭐ Bài"} ${newIndex}: ${
+                  item.title
+                }`}
+                <img className="arrow-right" src={arrowRight} alt="" />
+              </span>
+            ) : isHome ? (
+              <NavLink to={item.url}>
+                {`Bài ${newIndex}: ${item.title}`}
+              </NavLink>
+            ) : (
+              <a href={`${path}/exercises/${item.url}.html`}>
+                {`Bài ${newIndex}: ${item.title}`}
+              </a>
+            )}
 
-          {item.children && (
-            <Navigations items={item.children} isHome={isHome} index={i} />
-          )}
-        </li>
-      ))}
+            {item.children && (
+              <Navigations
+                items={item.children}
+                isHome={isHome}
+                index={newIndex}
+              />
+            )}
+          </li>
+        );
+      })}
     </ul>
   );
 
   return !isHome && isRoot ? (
     <nav>
-      <h2 className={`exercises`}>Bài tập thực hành:</h2>
+      <h2 className={`exercises`}>Bài Tập Về Nhà:</h2>
       {content}
       <Navigations items={ROUTES_MENU} isHome={true} />
     </nav>

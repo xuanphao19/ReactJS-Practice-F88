@@ -1,0 +1,128 @@
+.button {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 500;
+  font-size: 1.6rem;
+  border-radius: 4px;
+  padding: 0.5em 1.5em;
+  border: none;
+  cursor: pointer;
+  user-select: none;
+  white-space: nowrap;
+  text-decoration: none;
+  background-color: transparent;
+  transition: opacity 0.25s ease-in-out, color 0.25s ease-in-out,
+    background-color 0.15s ease-in-out, border-color 0.15s ease-in-out,
+    box-shadow 0.15s ease-in-out;
+}
+.button:hover:not(:disabled) {
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.primary {
+  --btn-border-color: #00329d;
+  background-color: #2563eb;
+  color: #fff;
+}
+.primary:hover:not(:disabled) {
+  background-color: #1e40af;
+}
+.secondary {
+  --btn-border-color: #292f37;
+  background-color: #4b5563;
+  color: #fff;
+}
+.secondary:hover:not(:disabled) {
+  background-color: #374151;
+}
+.danger {
+  --btn-border-color: #910d0d;
+  background-color: #dc2626;
+  color: #fff;
+}
+.danger:hover:not(:disabled) {
+  background-color: #b91c1c;
+}
+
+.small {
+  font-size: 14px;
+}
+.medium {
+  font-size: 16px;
+}
+.large {
+  font-size: 20px;
+}
+
+.rounded {
+  border-radius: 9999px;
+}
+
+.bordered {
+  border: 1px solid var(--btn-border-color, #2563eb);
+}
+.outline {
+  color: var(--btn-text-color, inherit);
+  background: transparent;
+}
+/* ====== Nav ======= */
+
+.wrapper {
+  margin-top: 30px;
+  width: 900px;
+}
+.title h2 {
+  display: flex;
+  align-items: center;
+  font-size: 26px;
+  margin-top: 20px;
+}
+.title h2 a {
+  margin-left: 20px;
+}
+
+.navigation {
+  display: flex;
+  align-items: center;
+  margin-top: 20px;
+  padding: 24px 14px;
+  background: #32323499;
+}
+.navlist {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.item {
+  display: flex;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.link {
+  font-size: 1.4rem;
+  font-weight: 600;
+  padding: 0.4em 1em;
+  color: var(--bs-link-color, #6ea8fe);
+}
+
+.selected {
+  color: #f8f8f8;
+  background: #0d6efd;
+}
+
+.item:hover > a.selected {
+  opacity: 0.8;
+  color: #f8f8f8;
+  background-color: #0d6efd;
+}

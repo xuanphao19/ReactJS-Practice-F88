@@ -2,6 +2,7 @@
   --text-color: #213547;
   --bg-color: #fff8f8;
   --gotoback-shadow: rgba(123, 123, 123, 0.33);
+  --bs-link-color: #6ea8fe;
 
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
@@ -16,6 +17,7 @@ html.dark {
   --bg-color: #17171a;
   --text-color: #d5dde4;
   --gotoback-shadow: rgb(74 101 255);
+  --bs-link-color: #6ea8fe;
 }
 html,
 body {
@@ -32,7 +34,6 @@ body {
   background-color: #d5dde471;
   border-radius: 999px;
 }
-
 * {
   margin: 0;
   padding: 0;
@@ -136,9 +137,23 @@ button:hover {
   align-items: start;
 }
 
+.home-content ul::-webkit-scrollbar {
+  width: 0;
+  display: none;
+}
+.home-content ul::-webkit-scrollbar-track {
+  background: transparent;
+}
+.home-content ul::-webkit-scrollbar-thumb {
+  background-color: transparent;
+}
+
 .exercise-content h2 {
   margin-bottom: 20px;
   font-size: 24px;
+}
+.exercise-content {
+  width: 900px;
 }
 
 .exercise-content nav {
@@ -175,6 +190,7 @@ nav .nav-label.open + ul {
   max-height: 500px;
   margin-block: 10px;
   opacity: 1;
+  overflow-y: scroll;
 }
 
 .nav-label.open .arrow-right {

@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
-import Header from "../../layout/Header/Header";
-import Loading from "../../components/Loading";
+
+import Headers from "../../hw_components/Headers/Headers";
+import { Navigation } from "../../hw_components/index";
+import Loading from "../../../components/Loading";
 
 function Comments() {
   const [data, setData] = useState([]);
@@ -54,14 +56,22 @@ function Comments() {
 
   return (
     <div className="container">
-      <Header />
-      <div className="exercise-content">
-        <h2>Bài tập 2.5: Comment System ROUTES</h2>
+      <Headers>
+        <p className="desc">
+          Chinh phục ReactJS cùng F8 -
+          <a href="https://fullstack.edu.vn/">fullstack.edu.vn</a> Học lập trình
+          để đi làm!
+        </p>
+      </Headers>
+      <Navigation>
+        <h2>Bài tập 2.5: Comment System</h2>
         <a
           href="https://github.com/xuanphao19/ReactJS-Practice-F88/blob/main/src/homework/homework_2/Homework_2_5.jsx"
           className="repositories">
           Repositories GitHub
         </a>
+      </Navigation>
+      <div className="exercise-content">
         <form className="form-data" onSubmit={handleSubmit}>
           <input
             id="name"

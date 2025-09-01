@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
-import Header from "../../layout/Header/Header";
-import Loading from "../../components/Loading";
+import Headers from "../../hw_components/Headers/Headers";
+import { Navigation } from "../../hw_components/index";
+import Loading from "../../../components/Loading";
 import resetIcon from "/reset.svg";
 
 const WEATHER_ID = "fdfd8bff8ab5b53fdd7ca82ef272712e";
@@ -199,15 +200,22 @@ function Weathers() {
 
   return (
     <div className="container">
-      <Header />
-      <div className="exercise-content">
-        <h2>Bài tập 2.6: Weather App ROUTES</h2>
+      <Headers>
+        <p className="desc">
+          Chinh phục ReactJS cùng F8 -
+          <a href="https://fullstack.edu.vn/">fullstack.edu.vn</a> Học lập trình
+          để đi làm!
+        </p>
+      </Headers>
+      <Navigation>
+        <h2>Bài tập 2.1.7: Weather App ROUTES</h2>
         <a
           href="https://github.com/xuanphao19/ReactJS-Practice-F88/blob/main/src/homework/homework_2/Homework_2_6.jsx"
           className="repositories">
           Repositories GitHub
         </a>
-
+      </Navigation>
+      <div className="exercise-content">
         <div className="answer-content weather-city">
           {error && (
             <p className="error">
