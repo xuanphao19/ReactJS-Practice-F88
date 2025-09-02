@@ -11,7 +11,9 @@ function Home() {
         <div className="exercise-content home-content">
           <a
             href="https://github.com/xuanphao19/ReactJS-Practice-F88"
-            className="repositories">
+            className="repositories"
+            target="_blank"
+            rel="noopener noreferrer">
             Repositories GitHub
           </a>
           <ContentTheory />

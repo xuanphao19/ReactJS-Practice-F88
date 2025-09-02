@@ -11,15 +11,22 @@ function ShowButtons() {
       <Headers>
         <p className="desc">
           Chinh phục ReactJS cùng F8 -
-          <a href="https://fullstack.edu.vn/">fullstack.edu.vn</a> Học lập trình
-          để đi làm!
+          <a
+            href="https://fullstack.edu.vn/"
+            target="_blank"
+            rel="noopener noreferrer">
+            fullstack.edu.vn
+          </a>
+          Học lập trình để đi làm!
         </p>
       </Headers>
       <Navigation>
         <h2>Bài tập 2.2.1: Button đẹp dành cho bạn!</h2>
         <a
           href="https://github.com/xuanphao19/ReactJS-Practice-F88/blob/main/src/homework/homework_2/Homework_2_6.jsx"
-          className="repositories">
+          className="repositories"
+          target="_blank"
+          rel="noopener noreferrer">
           Repositories GitHub
         </a>
       </Navigation>
@@ -41,7 +48,7 @@ function ShowButtons() {
             Outline
           </Button>
           <Button size="small" bordered rounded>
-            Outline
+            Rounded
           </Button>
           <Button size="small" href={"/"}>
             Is the link
@@ -65,7 +72,7 @@ function ShowButtons() {
             Outline
           </Button>
           <Button size="medium" bordered rounded>
-            Outline
+            Rounded
           </Button>
           <Button size="medium" href={"/"}>
             Is the link
@@ -89,7 +96,7 @@ function ShowButtons() {
             Outline
           </Button>
           <Button size="large" bordered rounded>
-            Outline
+            Rounded
           </Button>
         </div>
       </div>

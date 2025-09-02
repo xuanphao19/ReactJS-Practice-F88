@@ -76,15 +76,22 @@ function TodoApp() {
       <Headers>
         <p className="desc">
           Chinh phục ReactJS cùng F8 -
-          <a href="https://fullstack.edu.vn/">fullstack.edu.vn</a> Học lập trình
-          để đi làm!
+          <a
+            href="https://fullstack.edu.vn/"
+            target="_blank"
+            rel="noopener noreferrer">
+            fullstack.edu.vn
+          </a>
+          Học lập trình để đi làm!
         </p>
       </Headers>
       <Navigation>
         <h2 className="exercise_1">Bài tập 2.1.3: Todo List App</h2>
         <a
           href="https://github.com/xuanphao19/ReactJS-Practice-F88/blob/main/src/homework/homework_2/Homework_2_2/Homework_2_2.jsx"
-          className="repositories">
+          className="repositories"
+          target="_blank"
+          rel="noopener noreferrer">
           Repositories GitHub
         </a>
       </Navigation>
