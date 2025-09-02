@@ -8,8 +8,13 @@ export default function Header() {
       </h1>
       <p className="desc">
         Dấu ấn khám phá và thực hành ReactJS cùng F8 -
-        <a href="https://fullstack.edu.vn/">fullstack.edu.vn</a> Học lập trình
-        để đi làm!
+        <a
+          href="https://fullstack.edu.vn/"
+          target="_blank"
+          rel="noopener noreferrer">
+          fullstack.edu.vn
+        </a>
+        Học lập trình để đi làm!
       </p>
     </div>
   );
