@@ -1,3 +1,4 @@
+import React from "react";
 import Header from "../../layout/Header/Header";
 import ContentTheory from "../../contentTheory";
 import Navigations from "../../layout/Navigations";
@@ -14,7 +15,7 @@ function Home() {
             className="repositories"
             target="_blank"
             rel="noopener noreferrer">
-            Repositories GitHub
+            <span>⭐</span> Repositories GitHub
           </a>
           <ContentTheory />
           <Navigations isRoot />
@@ -27,3 +28,4 @@ function Home() {
 }
 
 export default Home;
+

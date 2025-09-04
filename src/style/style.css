@@ -133,6 +133,18 @@ button:hover {
   margin-top: 20px;
 }
 
+#theoryTitle + nav {
+  max-height: 138px;
+  overflow: hidden;
+  overflow-y: auto;
+  transition: all 0.3s linear;
+}
+
+#theoryTitle + nav:has(.open),
+#theoryTitle.open + nav {
+  max-height: 500px;
+}
+
 .exercise-content.home-content {
   align-items: start;
 }

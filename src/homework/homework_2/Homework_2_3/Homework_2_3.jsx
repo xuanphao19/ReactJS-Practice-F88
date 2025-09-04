@@ -44,7 +44,7 @@ function Profile() {
           className="repositories"
           target="_blank"
           rel="noopener noreferrer">
-          Repositories GitHub
+          <span>⭐</span> Repositories GitHub
         </a>
       </Navigation>
       <div className="exercise-content">

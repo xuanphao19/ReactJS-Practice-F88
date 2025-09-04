@@ -32,27 +32,32 @@ function Weathers() {
 
   function formatCity(str) {
     return str
-      .trim()
-      .toLowerCase()
-      .replace(/(^|\s)\w/g, (letter) => letter.toUpperCase());
+      .normalize("NFD") // Phân tách ký tự thành chữ cái và dấu
+      .replace(/[\u0300-\u036f]/g, "") // Xóa các dấu
+      .replace(/đ/g, "d") // Thay "đ" thành "d"
+      .replace(/Đ/g, "D") // Thay "Đ" thành "D"
+      .toLowerCase() // Chuyển thành chữ thường
+      .replace(/\s+/g, " ") // Chuẩn hóa khoảng trắng
+      .replace(/(^|\s)\w/g, (letter) => letter.toUpperCase()); // Chuẩn hóa chữ cái đầu!
   }
 
   const getWeatherLogCity = async (desiredCity = null) => {
-    const city = desiredCity ? formatCity(desiredCity.trim()) : "Hanoi";
-
+    let city = desiredCity ? formatCity(desiredCity.trim()) : "Hanoi";
+    city = city === "Sai Gon" ? "Ho Chi Minh" : city;
     try {
       const response = await fetch(
         `${API_ENDPOINT.WEATHER}appid=${WEATHER_ID}&q=${city}&lang=vi`,
       );
       const data = await response.json();
       if (data.cod !== 200) {
-        setError(`${newCity} City, không có trong kho dữ liệu!`);
+        setError(`${city} City, không có trong kho dữ liệu!`);
         throw new Error(data.message || "Không tìm thấy thành phố");
       }
       if (!data.sys || !data.weather || !data.main) {
         setError("Dữ liệu thời tiết không đầy đủ");
         throw new Error("Dữ liệu thời tiết không đầy đủ");
       }
+
       const dataWeather = {
         id: data.id,
         city: data.name,
@@ -119,6 +124,7 @@ function Weathers() {
   const handleInputChange = (e) => {
     const value = e.target.value;
     setNewCity(value);
+    setError("");
   };
 
   const handleInputFocus = () => {
@@ -154,6 +160,10 @@ function Weathers() {
         <div className="icon">
           <img
             src={`http://openweathermap.org/img/wn/${w.icon}@2x.png`}
+            alt="Weather Icon"
+          />
+          <img
+            src={`http://openweathermap.org/img/wn/02d@2x.png`}
             alt="Weather Icon"
           />
         </div>
@@ -219,9 +229,10 @@ function Weathers() {
           className="repositories"
           target="_blank"
           rel="noopener noreferrer">
-          Repositories GitHub
+          <span>⭐</span> Repositories GitHub
         </a>
       </Navigation>
+
       <div className="exercise-content">
         <div className="answer-content weather-city">
           {error && (

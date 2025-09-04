@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { NavLink } from "react-router";
 import arrowRight from "/arrowRight.svg";
 import { ROUTES_MENU, EXERCISES } from "../../config/routes.prefix";
@@ -16,6 +16,7 @@ const Navigations = ({
   const [open, setOpen] = useState({});
   const [isLocal, setIsLocal] = useState(true);
   const [path, setPath] = useState("");
+  const ulRefs = useRef({});
 
   useEffect(() => {
     setIsLocal(import.meta.env.MODE === "production");
@@ -29,14 +30,20 @@ const Navigations = ({
     const target = e.target.closest(".nav-label");
     if (!target) return;
     const id = target.id;
-    setOpen((prev) => ({
-      ...prev,
-      [id]: !prev[id],
-    }));
+    setOpen((prev) => {
+      const newOpen = { ...prev, [id]: !prev[id] };
+      setTimeout(() => {
+        ulRefs.current.scrollIntoView({
+          behavior: "smooth",
+          block: "start",
+        });
+      }, 100);
+      return newOpen;
+    });
   };
 
   const content = (
-    <ul>
+    <ul className="nav-list" ref={ulRefs}>
       {items.map((item, i) => {
         i = isHome ? i + 1 : i;
         const newIndex = `${
@@ -52,7 +59,7 @@ const Navigations = ({
                 {`${index === null ? "🏡 Bài tập" : "⭐ Bài"} ${newIndex}: ${
                   item.title
                 }`}
-                <img className="arrow-right" src={arrowRight} alt="" />
+                <img className="arrow-right" src={arrowRight} alt="arrow" />
               </span>
             ) : isHome ? (
               <NavLink to={item.url}>
@@ -63,7 +70,6 @@ const Navigations = ({
                 {`Bài ${newIndex}: ${item.title}`}
               </a>
             )}
-
             {item.children && (
               <Navigations
                 items={item.children}
@@ -79,7 +85,7 @@ const Navigations = ({
 
   return !isHome && isRoot ? (
     <nav>
-      <h2 className={`exercises`}>Bài Tập Về Nhà:</h2>
+      <h2 className="exercises">Bài Tập Về Nhà:</h2>
       {content}
       <Navigations items={ROUTES_MENU} isHome={true} />
     </nav>

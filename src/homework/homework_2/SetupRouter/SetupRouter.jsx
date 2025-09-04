@@ -26,7 +26,7 @@ function SetupRouter() {
             className="repositories"
             target="_blank"
             rel="noopener noreferrer">
-            Repositories GitHub
+            <span>⭐</span> Repositories GitHub
           </a>
         </h2>
         <h2>
@@ -36,7 +36,7 @@ function SetupRouter() {
             href="https://github.com/xuanphao19/ReactJS-Practice-F88/blob/main/src/homework/homework_2/SetupRouter/SetupRouter.jsx"
             className="repositories"
             target="_blank">
-            Repositories GitHub
+            <span>⭐</span> Repositories GitHub
           </a>
         </h2>
       </Navigation>

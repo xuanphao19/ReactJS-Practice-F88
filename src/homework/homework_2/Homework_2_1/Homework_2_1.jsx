@@ -41,7 +41,7 @@ function Counter() {
           className="repositories"
           target="_blank"
           rel="noopener noreferrer">
-          Repositories GitHub
+          <span>⭐</span> Repositories GitHub
         </a>
       </Navigation>
 

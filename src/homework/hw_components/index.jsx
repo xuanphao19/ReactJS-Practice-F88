@@ -100,8 +100,8 @@ Lists.propTypes = {
 };
 Item.propTypes = {
   children: PropTypes.node.isRequired,
-  className: PropTypes.string,
-  as: PropTypes.string,
+  className: PropTypes.string | null,
+  as: PropTypes.string | null,
 };
 
 const navData = [

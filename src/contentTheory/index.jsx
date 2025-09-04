@@ -4,17 +4,18 @@ import arrowRight from "/arrowRight.svg";
 import { BASIC_THEORY } from "../config/routes.prefix";
 
 function ContentTheory() {
-  const NavTheory = ({ items = BASIC_THEORY, index = null }) => {
-    const [open, setOpen] = useState({});
+  const [open, setOpen] = useState(false);
 
-    const handleOpen = (e) => {
-      const target = e.target.closest(".nav-label");
+  const NavTheory = ({ items = BASIC_THEORY, index = null }) => {
+    const [show, setShow] = useState({});
+
+    const handleToggle = (e) => {
+      e.preventDefault();
+      const target = e.target.closest(".theory");
       if (!target) return;
       const id = target.id;
-      setOpen((prev) => ({
-        ...prev,
-        [id]: !prev[id],
-      }));
+
+      setShow({ ...show, [id]: !show[id] });
     };
 
     return (
@@ -26,8 +27,8 @@ function ContentTheory() {
               {!item.url ? (
                 <span
                   id={item.id}
-                  className={`nav-label${open[item.id] ? " open" : ""}`}
-                  onClick={handleOpen}>
+                  className={`nav-label theory${show[item.id] ? " open" : ""} `}
+                  onClick={handleToggle}>
                   {`Phần ${newIndex}: ${item.title}`}
                   <img className="arrow-right" src={arrowRight} alt="" />
                 </span>
@@ -46,13 +47,16 @@ function ContentTheory() {
       </ul>
     );
   };
-  /*   */
+
   return (
     <div className="basic-theory">
-      <h2 className={`exercises`}>Lý thuyết cơ bản:</h2>
-      <nav>
-        <NavTheory />
-      </nav>
+      <h2
+        id="theoryTitle"
+        className={`${open ? " open" : ""}`}
+        onClick={() => setOpen(!open)}>
+        Lý thuyết cơ bản:
+      </h2>
+      <nav>{<NavTheory />}</nav>
     </div>
   );
 }
